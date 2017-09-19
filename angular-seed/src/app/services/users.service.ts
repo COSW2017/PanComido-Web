@@ -32,8 +32,8 @@ export class UsersService extends APIService {
     return this.get(this.itemsUrl);
   }
 
-  create(email: string, password: string, firstname: string, lastname: string, image: string, username: string) {
-    return this.post(this.createUrl, new User(email, password, firstname, lastname, image, username));
+  create(email: string, password: string, firstname: string, lastname: string, image: string, city: string, cellphone:string, restaurant: Restaurant) {
+    return this.post(this.createUrl, new User(email, password, firstname, lastname, image, cellphone, city, restaurant));
   }
 
   find(email: string): Observable<User> {

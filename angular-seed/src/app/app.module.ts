@@ -29,6 +29,8 @@ import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component
 import { UserListPageComponent } from './pages/user-list-page/user-list-page.component';
 import { UserEditPageComponent } from './pages/user-edit-page/user-edit-page.component';
 import { OrderListPageComponent } from './pages/order-list-page/order-list-page.component';
+import { RestaurantService } from "./services/restaurant.service";
+import { ResgitroRestauranteComponent } from "./pages/register-restaurant-page/task-register-restaurant.component";
 
 const ROUTES = [
   { path: '', component: SignInPageComponent },
@@ -54,6 +56,9 @@ const ROUTES = [
     canActivate: [AuthService],
   },
   {
+    path: 'registro', component: ResgitroRestauranteComponent
+  },
+  {
     path: '**', component: PageNotFoundComponent
   }
 ];
@@ -68,7 +73,8 @@ const ROUTES = [
     SignInPageComponent,
     UserListPageComponent,
     UserEditPageComponent,
-    OrderListPageComponent
+    OrderListPageComponent, 
+    ResgitroRestauranteComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +95,8 @@ const ROUTES = [
     AuthService,
     AppDataService,
     APIService,
-    UsersService
+    UsersService, 
+    RestaurantService
   ],
   bootstrap: [AppComponent]
 })

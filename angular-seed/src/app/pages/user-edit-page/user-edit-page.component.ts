@@ -2,6 +2,7 @@ import { UsersService } from '../../services/users.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RestaurantService } from "../../services/restaurant.service";
 
 @Component({
   selector: 'app-user-edit-page',
@@ -13,6 +14,7 @@ export class UserEditPageComponent implements OnInit {
   userForm: FormGroup;
   constructor(
     public userService: UsersService,
+    public restaurantService: RestaurantService, 
     public formBuilder: FormBuilder,
     public router: Router,
   ) {
@@ -29,8 +31,13 @@ export class UserEditPageComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    this.userService.create(
+  createRestaurant(){
+    
+  }
+
+  onSubmit() {}
+  
+  /*  this.userService.create(
       this.userForm.get('email').value,
       this.userForm.get('password').value,
       this.userForm.get('firstname').value,
@@ -42,6 +49,6 @@ export class UserEditPageComponent implements OnInit {
     }, error => {
       console.log(error);
     });
-  }
+  }*/
 
 }

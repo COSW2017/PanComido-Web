@@ -15,8 +15,7 @@ export class Restaurant {
     private dishes: Dish[];
 
 
-    constructor(id_restaurat: Number, name: string, latitude: Number, longitude: Number, like: Number, dislike: Number, love: Number, angry: Number, orders: Order[], comments: Comment[], dishes: Dish[]) {
-        this.id_restaurant = id_restaurat;
+    constructor(name: string, latitude: Number, longitude: Number, like: Number, dislike: Number, love: Number, angry: Number, orders: Order[], comments: Comment[], dishes: Dish[]) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
