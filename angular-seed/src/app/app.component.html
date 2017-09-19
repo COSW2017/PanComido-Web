@@ -3,35 +3,35 @@
     aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-  <a class="navbar-brand" href="#">COSW Angular4</a>
+  <a class="navbar-brand" href="#">PanComido</a>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="/" routerLink="/">Home</a>
+        <a class="nav-link" routerLinkActive="/" routerLink="/">Inicio</a>
       </li>
-      <li class="nav-item">
+      <!--li class="nav-item">
         <a class="nav-link" routerLinkActive="/tasks" routerLink="/tasks">Tasks</a>
-      </li>
-      <li class="nav-item">
+      </li-->
+      <!--li class="nav-item">
         <a class="nav-link" routerLinkActive="/edit" routerLink="/edit">Edit Tasks</a>
-      </li>
-      <li class="nav-item">
+      </li-->
+      <!--li class="nav-item">
         <a class="nav-link" routerLinkActive="/tasks" routerLink="/users">Users</a>
-      </li>
-      <li class="nav-item">
+      </li-->
+      <!--li class="nav-item">
         <a class="nav-link" routerLinkActive="/edit" routerLink="/user_edit">Edit Users</a>
-      </li>
-      <li class="nav-item">
+      </li-->
+      <li *ngIf="isLoggedIn()" class="nav-item">
         <a class="nav-link" routerLinkActive="/order" routerLink="/order">View Orders</a>
       </li>
       <li *ngIf="isLoggedIn()" class="nav-item">
         <a href="#" class="nav-link" (click)="signOut()">(Sign Out)</a>
       </li>
     </ul>
-     <form class="form-inline my-2 my-lg-0" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidate>
+     <!--form class="form-inline my-2 my-lg-0" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidate>
          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" formControlName="search">
          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  data-toggle="modal" data-target="#exampleModal">>Search</button>
-     </form>
+     </form-->
   </div>
 </nav>
 
