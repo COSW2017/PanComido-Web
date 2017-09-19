@@ -23,4 +23,9 @@ export class RestaurantService extends APIService {
     return this.get(this.resourceUrl+"/"+id+"/"+"order");
   }
 
+  getOrderById(id_restaurant: Number, id_order: Number): Observable <Order>{
+    console.log(id_restaurant, id_order, "en restaurantService");
+    return this.get(this.resourceUrl+"/"+id_restaurant+"/"+"order/"+id_order);
+  }
+
 }

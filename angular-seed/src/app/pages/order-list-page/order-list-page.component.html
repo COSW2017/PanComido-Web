@@ -6,9 +6,9 @@
        <th>Identificator</th>
      </tr>
    </thead>
-   <tr *ngFor="let user of users">
-       <td>{{Order.id_Order}}</td>
-       <td><img [src]="user.image" width="200" height="200" /></td>
+   <tr *ngFor="let order of orders">
+       <td>{{order.id}}</td>
+       <td><Button (click)="viewOrder(order.id)">View</Button></td>
    </tr>
   </table>
         

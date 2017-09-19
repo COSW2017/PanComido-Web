@@ -29,7 +29,14 @@ import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component
 import { UserListPageComponent } from './pages/user-list-page/user-list-page.component';
 import { UserEditPageComponent } from './pages/user-edit-page/user-edit-page.component';
 import { OrderListPageComponent } from './pages/order-list-page/order-list-page.component';
+<<<<<<< HEAD
+import { RestaurantService } from './services/restaurant.service';
+import { OrderDetailPageComponent } from './pages/order-detail-page/order-detail-page.component';
+import { OrderService } from './services/order.service';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
+=======
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+>>>>>>> 239d6bd8c8216b0469556822b07ed90f24d692d7
 
 const ROUTES = [
   { path: '', component: SignInPageComponent },
@@ -62,6 +69,10 @@ const ROUTES = [
     canActivate: [AuthService],
   },
   {
+    path: 'orderDetail', component: OrderDetailPageComponent,
+    canActivate: [AuthService],
+  },
+  {
     path: '**', component: PageNotFoundComponent
   }
 ];
@@ -77,7 +88,8 @@ const ROUTES = [
     UserListPageComponent,
     UserEditPageComponent,
     OrderListPageComponent,
-    RegisterPageComponent
+    OrderDetailPageComponent,
+    RegisterPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,7 +110,9 @@ const ROUTES = [
     AuthService,
     AppDataService,
     APIService,
-    UsersService
+    UsersService,
+    RestaurantService,
+    OrderService,
   ],
   bootstrap: [AppComponent]
 })
