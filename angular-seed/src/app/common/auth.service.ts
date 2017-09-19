@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, CanActivate } from '@angular/router';
 
-import { AppConfiguration } from '../common/config/app-configuration.service';
+import { AppConfiguration } from '../common/app-configuration.service';
 import { AppDataService } from '../common/app-data.service';
 
 @Injectable()
@@ -15,6 +15,14 @@ export class AuthService implements CanActivate {
 
   public set accessToken(accessToken: string) {
     this.appData.accessToken = accessToken;
+  }
+
+  public set email(email: string) {
+    this.appData.email = email;
+  }
+
+  public get email(): string {
+    return this.appData.email;
   }
 
   public isLoggedIn(): boolean {

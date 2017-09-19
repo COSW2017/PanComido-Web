@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
-import { AppConfiguration } from '../common/config/app-configuration.service';
+import { AppConfiguration } from '../common/app-configuration.service';
 import { AuthService } from '../common/auth.service';
 
 import { Observable } from 'rxjs/Observable';
@@ -13,7 +13,7 @@ import 'rxjs/add/observable/throw';
 export class APIService {
   constructor(
     public config: AppConfiguration,
-    //public authService: AuthService,
+    public authService: AuthService,
     public http: Http
   ) { }
 
