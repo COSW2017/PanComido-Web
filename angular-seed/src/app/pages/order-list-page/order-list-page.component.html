@@ -8,7 +8,10 @@
    </thead>
    <tr *ngFor="let order of orders">
        <td>{{order.id}}</td>
-       <td><Button (click)="viewOrder(order.id)">View</Button></td>
+       <td>
+         <Button class="btn btn-primary" (click)="viewOrder(order.id)">Ver</Button>
+         <Button class="btn btn-success" >Lista</Button>
+      </td>
    </tr>
   </table>
         
