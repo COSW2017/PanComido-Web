@@ -3,7 +3,7 @@ import { Restaurant } from "./restaurant";
 export class User {
     private email: string;
     private password: string;
-    private firstname: string;
+    public firstname: string;
     private lastname: string;
     private username: string;
     private image: string;

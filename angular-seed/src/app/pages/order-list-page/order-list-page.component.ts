@@ -25,7 +25,6 @@ export class OrderListPageComponent implements OnInit {
   viewOrder(id: Number){
     this.orderService.id_order = id;
     this.orderService.id_restaurant = this.user.restaurant.id_restaurant;
-    console.log(this.orderService.id_order = id,  this.orderService.id_restaurant = this.user.restaurant.id_restaurant, "en list")
     this.router.navigate(['orderDetail']);
   }
 
