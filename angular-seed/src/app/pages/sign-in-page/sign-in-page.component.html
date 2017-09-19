@@ -11,8 +11,8 @@
       <input type="password" class="form-control" id="alterEgo" formControlName="password">
     </div>
 
-    <button type="submit" class="btn btn-success" [disabled]="!signInForm.valid">Sign In</button>
-
+    <button type="submit" class="btn btn-primary" [disabled]="!signInForm.valid">Sign In</button>
+    <a [routerLink]="['/register']" class="btn btn-link">Register</a>
     <p class="text-danger mt-1" *ngIf="loginError">{{loginError}}</p>
 
   </form>

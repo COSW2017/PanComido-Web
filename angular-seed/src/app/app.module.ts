@@ -29,6 +29,7 @@ import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component
 import { UserListPageComponent } from './pages/user-list-page/user-list-page.component';
 import { UserEditPageComponent } from './pages/user-edit-page/user-edit-page.component';
 import { OrderListPageComponent } from './pages/order-list-page/order-list-page.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
 
 const ROUTES = [
   { path: '', component: SignInPageComponent },
@@ -36,6 +37,13 @@ const ROUTES = [
   {
     path: 'tasks', component: TaskListPageComponent,
     canActivate: [AuthService],
+  },
+  {
+    path: 'login', component: SignInPageComponent,
+    canActivate: [AuthService],
+  },
+  {
+    path: 'register', component:  RegisterPageComponent,
   },
   {
     path: 'users', component: UserListPageComponent,
@@ -68,7 +76,8 @@ const ROUTES = [
     SignInPageComponent,
     UserListPageComponent,
     UserEditPageComponent,
-    OrderListPageComponent
+    OrderListPageComponent,
+    RegisterPageComponent
   ],
   imports: [
     BrowserModule,
