@@ -23,7 +23,7 @@ export class OrderDetailPageComponent implements OnInit {
       this.order = restaurantResponse;
       this.dishes = this.order.dishes;
       this.state = this.order.state;
-      console.log("la orden que retorna ",this.order)
+      console.log("la orden que retorna ",this.dishes)
     });
   }
 

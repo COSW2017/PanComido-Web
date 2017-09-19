@@ -1,6 +1,6 @@
 export class Dish {
     private id_dish: Number;
-    private nombre: string;
+    public nombre: string;
     private price: Number;
     private description: string;
 
