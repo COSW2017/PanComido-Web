@@ -13,17 +13,17 @@ import { OrderService } from '../../services/order.service';
 export class OrderDetailPageComponent implements OnInit {
   private order: Order;
   private dishes: Dish[];
+  //private users: string;
   private state: Number;
   constructor(public restaurantService: RestaurantService,
     public orderService: OrderService,) { }
 
   ngOnInit() {
     this.restaurantService.getOrderById(this.orderService.id_restaurant, this.orderService.id_order).subscribe(restaurantResponse => {
-      console.log(this.orderService.id_restaurant, this.orderService.id_order," en Detail");
       this.order = restaurantResponse;
       this.dishes = this.order.dishes;
       this.state = this.order.state;
-      console.log("la orden que retorna ",this.dishes)
+      //this.users = this.order.users;
     });
   }
 

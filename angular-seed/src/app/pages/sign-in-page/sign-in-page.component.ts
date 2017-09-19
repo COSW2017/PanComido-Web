@@ -28,7 +28,7 @@ export class SignInPageComponent implements OnInit {
     this.usersService.login(
       this.signInForm.get('username').value,
       this.signInForm.get('password').value).subscribe(loginResponse => {
-        this.router.navigate(['tasks']);
+        this.router.navigate(['order']);
       }, error => {
         this.loginError = 'Error Signing in: ' + (error && error.message ? error.message : '');
       });
