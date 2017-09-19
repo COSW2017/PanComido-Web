@@ -38,10 +38,11 @@ const ROUTES = [
     canActivate: [AuthService],
   },
   {
-    path: 'login', component: SignInPageComponent
+    path: 'login', component: SignInPageComponent,
+    canActivate: [AuthService],
   },
   {
-    path: 'register', component:  RegisterPageComponent
+    path: 'register', component:  RegisterPageComponent,
   },
   {
     path: 'users', component: UserListPageComponent,

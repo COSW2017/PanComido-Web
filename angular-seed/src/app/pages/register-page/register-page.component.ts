@@ -21,6 +21,11 @@ export class RegisterPageComponent implements OnInit {
   }
 
   register() {
-
+    this.usersService.create(this.registerForm.get('email').value, this.registerForm.get('password').value, this.registerForm.get('firstName').value, this.registerForm.get('lastName').value, this.registerForm.get('').value, this.registerForm.get('user').value)
+    .subscribe(
+        data => {
+          this.router.navigate(['/login']);
+        }
+    );
   }
 }
