@@ -5,7 +5,7 @@ import { Dish } from "./dish";
 export class Order {
     private id: Number;
     private restaurants: Restaurant[];
-    private users: User[];
+    public users: User[];
     public dishes: Dish[];
     public state: Number;
 
