@@ -1,0 +1,20 @@
+<div class="container">
+  <h2>Orders</h2>
+  <table class="table table-bordered">
+   <thead>
+     <tr>
+       <th>Plato</th>
+       <th>estado</th>
+     </tr>
+   </thead>
+   <tr>
+       <td>
+          <tr *ngFor="let dish of dishes">
+              <td>{{dish.nombre}}</td>
+          </tr>
+      </td>
+      <td>{{state}}</td>
+   </tr>
+  </table>
+        
+  </div>

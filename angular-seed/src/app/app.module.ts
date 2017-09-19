@@ -29,6 +29,9 @@ import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component
 import { UserListPageComponent } from './pages/user-list-page/user-list-page.component';
 import { UserEditPageComponent } from './pages/user-edit-page/user-edit-page.component';
 import { OrderListPageComponent } from './pages/order-list-page/order-list-page.component';
+import { RestaurantService } from './services/restaurant.service';
+import { OrderDetailPageComponent } from './pages/order-detail-page/order-detail-page.component';
+import { OrderService } from './services/order.service';
 
 const ROUTES = [
   { path: '', component: SignInPageComponent },
@@ -54,6 +57,10 @@ const ROUTES = [
     canActivate: [AuthService],
   },
   {
+    path: 'orderDetail', component: OrderDetailPageComponent,
+    canActivate: [AuthService],
+  },
+  {
     path: '**', component: PageNotFoundComponent
   }
 ];
@@ -68,7 +75,8 @@ const ROUTES = [
     SignInPageComponent,
     UserListPageComponent,
     UserEditPageComponent,
-    OrderListPageComponent
+    OrderListPageComponent,
+    OrderDetailPageComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +97,9 @@ const ROUTES = [
     AuthService,
     AppDataService,
     APIService,
-    UsersService
+    UsersService,
+    RestaurantService,
+    OrderService,
   ],
   bootstrap: [AppComponent]
 })
