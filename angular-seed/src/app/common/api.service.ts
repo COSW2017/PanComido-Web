@@ -13,7 +13,7 @@ import 'rxjs/add/observable/throw';
 export class APIService {
   constructor(
     public config: AppConfiguration,
-    //public authService: AuthService,
+    public authService: AuthService,
     public http: Http
   ) { }
 

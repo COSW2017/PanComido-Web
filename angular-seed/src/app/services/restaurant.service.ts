@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { APIService } from "../common/api.service";
 import { Http } from '@angular/http';
+import { AuthService } from './../common/auth.service';
 import { AppConfiguration } from '../common/config/app-configuration.service';
 import { Observable } from 'rxjs/Observable';
 import { Order } from '../models/order';
@@ -12,9 +13,10 @@ export class RestaurantService extends APIService {
   
   constructor(
     public config: AppConfiguration,
+    public authService: AuthService,
     public http: Http
   ) {
-    super(config, http);
+    super(config, authService, http);
   }
 
   getOrders(id: Number): Observable <Order[]>{
