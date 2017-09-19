@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
-import { AppConfiguration } from '../common/config/app-configuration.service';
-import { AuthService } from '../common/auth.service';
-
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { AppConfiguration } from "./app-configuration.service";
 
 @Injectable()
 export class APIService {
   constructor(
     public config: AppConfiguration,
-    //public authService: AuthService,
     public http: Http
   ) { }
 
@@ -29,15 +25,16 @@ export class APIService {
       .get(`${this.config.apiURL}/${url}`, this.getRequestOptions(options))
       .map(this.extractData)
       .catch(this.handleError);
-  }
+  } 
 
+  
   private getRequestOptions(options?: any) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     const innerOptions = new RequestOptions({ headers });
 
-    if (!options || options.credentials === undefined || options.credentials === true) {
-      headers.append('Authorization', 'Bearer ' + this.authService.accessToken);
-    }
+    //if (!options || options.credentials === undefined || options.credentials === true) {
+      //headers.append('Authorization', 'Bearer ' + this.authService.accessToken);
+    //}
 
     return innerOptions;
   }
@@ -59,4 +56,3 @@ export class APIService {
     return Observable.throw(errObj);
   }
 }
-
