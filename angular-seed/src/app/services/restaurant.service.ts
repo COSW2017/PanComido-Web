@@ -5,6 +5,7 @@ import { AppConfiguration } from '../common/app-configuration.service';
 import { Observable } from 'rxjs/Observable';
 import { Order } from '../models/order';
 import { AuthService } from '../common/auth.service';
+import {Dish} from "../models/dish";
 
 @Injectable()
 export class RestaurantService extends APIService {
@@ -21,6 +22,10 @@ export class RestaurantService extends APIService {
 
   getOrders(id: Number): Observable <Order[]>{
     return this.get(this.resourceUrl+"/"+id+"/"+"order");
+  }
+
+  getDishes(id: Number): Observable <Dish[]>{
+      return this.get(this.resourceUrl + '/' + id + '/dish');
   }
 
   getOrderById(id_restaurant: Number, id_order: Number): Observable <Order>{
