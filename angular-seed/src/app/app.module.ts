@@ -4,8 +4,8 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppConfiguration } from './common/config/app-configuration.service';
-import { INITIAL_CONFIG } from './common/config/initial-config';
+import { AppConfiguration } from './common/app-configuration.service';
+import { INITIAL_CONFIG } from './common/initial-config';
 
 import { AppComponent } from './app.component';
 
@@ -28,6 +28,7 @@ import { TodoService } from './services/todo.service';
 import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component';
 import { UserListPageComponent } from './pages/user-list-page/user-list-page.component';
 import { UserEditPageComponent } from './pages/user-edit-page/user-edit-page.component';
+import { OrderListPageComponent } from './pages/order-list-page/order-list-page.component';
 
 const ROUTES = [
   { path: '', component: SignInPageComponent },
@@ -49,6 +50,10 @@ const ROUTES = [
     canActivate: [AuthService],
   },
   {
+    path: 'order', component: OrderListPageComponent,
+    canActivate: [AuthService],
+  },
+  {
     path: '**', component: PageNotFoundComponent
   }
 ];
@@ -62,7 +67,8 @@ const ROUTES = [
     PageNotFoundComponent,
     SignInPageComponent,
     UserListPageComponent,
-    UserEditPageComponent
+    UserEditPageComponent,
+    OrderListPageComponent
   ],
   imports: [
     BrowserModule,

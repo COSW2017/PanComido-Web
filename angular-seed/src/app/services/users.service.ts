@@ -2,9 +2,10 @@ import { User } from '../models/user';
 import { Injectable } from '@angular/core';
 import { APIService } from './../common/api.service';
 import { AuthService } from './../common/auth.service';
-import { AppConfiguration } from './../common/config/app-configuration.service';
+import { AppConfiguration } from './../common/app-configuration.service';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Restaurant } from '../models/restaurant';
 
 @Injectable()
 export class UsersService extends APIService {
@@ -20,8 +21,8 @@ export class UsersService extends APIService {
   ) {
     super(config, authService, http);
   }
-
-  /*login(username: string, password: string) {
+  /*
+  login(username: string, password: string) {
        // Mock
        this.authService.accessToken = 'test_access_token';
        return Observable.of({ access_token: this.authService.accessToken });
@@ -39,10 +40,11 @@ export class UsersService extends APIService {
     return this.get(this.findUrl+"?email="+email);
   }
 
-  login(username: string, password: string) {
-    return this.post('user/login', { username, password }, { credentials: false }).map(loginResponse => {
+  login(email: string, password: string) {
+    return this.post('user/login', { email, password }, { credentials: false }).map(loginResponse => {
       if (loginResponse) {
         this.authService.accessToken = loginResponse.accessToken;
+        this.authService.email = email;
       }
     });
   }

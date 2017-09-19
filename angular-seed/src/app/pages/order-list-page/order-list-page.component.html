@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>Orders</h2>
+  <table class="table table-bordered">
+   <thead>
+     <tr>
+       <th>Identificator</th>
+     </tr>
+   </thead>
+   <tr *ngFor="let user of users">
+       <td>{{Order.id_Order}}</td>
+       <td><img [src]="user.image" width="200" height="200" /></td>
+   </tr>
+  </table>
+        
+  </div>
