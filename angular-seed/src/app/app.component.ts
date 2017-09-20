@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  ngOnInit(){
+  ngOnInit() {
       this.searchForm = this.formBuilder.group({
           search: ''
       });

@@ -32,4 +32,12 @@ export class RestaurantService extends APIService {
     return this.get(this.resourceUrl+"/"+id_restaurant+"/"+"order/"+id_order);
   }
 
+  addDish(id: Number, name: string, price: Number, description: string, id_restaurant: Number) {
+      return this.post(this.resourceUrl + '/' + id_restaurant + '/dish', new Dish(id, name , price, description));
+  }
+
+  deleteDish(id_dish : Number, id_restaurant: Number){
+    return this.delete(this.resourceUrl + '/' + id_restaurant + '/dish/' + id_dish);
+  }
+
 }

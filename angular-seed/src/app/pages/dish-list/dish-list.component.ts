@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Dish} from "../../models/dish";
 import {User} from "../../models/user";
 import {RestaurantService} from "../../services/restaurant.service";
@@ -6,6 +6,7 @@ import {UsersService} from "../../services/users.service";
 import {AuthService} from "../../common/auth.service";
 import {Router} from "@angular/router";
 import {OrderService} from "../../services/order.service";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-dish-list',
@@ -16,11 +17,17 @@ export class DishListComponent implements OnInit {
 
     public dishes: Dish[] = [];
     private user: User;
+    userForm: FormGroup;
+    public error: string;
+
+    @ViewChild('fileInput') fileInput: ElementRef;
+
     constructor(public restaurantService: RestaurantService,
                 public usersService: UsersService,
                 public authService: AuthService,
                 public router: Router,
-                public orderService: OrderService,) { }
+                public orderService: OrderService,
+                public formBuilder: FormBuilder, ) { }
 
     ngOnInit() {
         this.usersService.find(this.authService.email).subscribe(userResponse => {
@@ -30,10 +37,49 @@ export class DishListComponent implements OnInit {
                 console.log(this.dishes);
             });
         });
+        this.userForm = this.formBuilder.group({
+            id: '',
+            name: '',
+            price: '',
+            description: ''
+        });
     }
 
-    deleteDish(dish: Dish){
+    onSubmit() {
+        this.error = null;
+        this.restaurantService.addDish(
+            this.userForm.get('id').value,
+            this.userForm.get('name').value,
+            this.userForm.get('price').value,
+            this.userForm.get('description').value,
+            this.user.restaurant.id_restaurant
+        ).subscribe(serverResponse => {
+            this.restaurantService.getDishes(this.user.restaurant.id_restaurant).subscribe(restaurantResponse => {
+                this.dishes = restaurantResponse;
+                console.log(this.dishes);
+                this.fileInput.nativeElement.click();
+                this.userForm.reset();
+            });
+        }, error => {
+            this.error = (error && error.message ? error.message : '');
+        });
+    }
 
+
+    deleteDish(id_dish : Number) {
+      this.error = null;
+      console.log(id_dish);
+      this.restaurantService.deleteDish(id_dish, this.user.restaurant.id_restaurant).subscribe(serverResponse => {
+        console.log(serverResponse);
+        this.restaurantService.getDishes(this.user.restaurant.id_restaurant).subscribe(restaurantResponse => {
+          this.dishes = restaurantResponse;
+          console.log(this.dishes);
+          }, error => {
+            console.log(error);
+        });
+      }, error => {
+          this.error = (error && error.message ? error.message : '');
+      });
     }
 
 }

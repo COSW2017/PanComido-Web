@@ -24,11 +24,25 @@ export class APIService {
       .catch(this.handleError);
   }
 
+  put(url: string, body: any, options?: any): Observable<any> {
+      return this.http
+          .put(`${this.config.apiURL}/${url}`, body, this.getRequestOptions(options))
+          .map(this.extractData)
+          .catch(this.handleError);
+  }
+
   get(url: string, options?: any): Observable<any> {
     return this.http
       .get(`${this.config.apiURL}/${url}`, this.getRequestOptions(options))
       .map(this.extractData)
       .catch(this.handleError);
+  }
+
+  delete(url: string, options?: any): Observable<any> {
+      return this.http
+          .delete(`${this.config.apiURL}/${url}`, this.getRequestOptions(options))
+          .map(this.extractData)
+          .catch(this.handleError);
   }
 
   private getRequestOptions(options?: any) {
