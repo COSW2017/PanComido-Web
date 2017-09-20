@@ -18,12 +18,26 @@ export class RegisterPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      firstName: '',
+      lastName: '',
+      email: '',
+      city: '',
+      phone: '',
+      password: '',
+      image: ''
+    });
   }
 
   register() {
-    this.usersService.create(this.registerForm.get('email').value, this.registerForm.get('password').value, this.registerForm.get('firstName').value, this.registerForm.get('lastName').value, this.registerForm.get('').value, this.registerForm.get('user').value)
-    .subscribe(
-        data => {
+    this.usersService.create(
+      this.registerForm.get('email').value,
+      this.registerForm.get('password').value,
+      this.registerForm.get('firstName').value, 
+      this.registerForm.get('lastName').value,
+      this.registerForm.get('image').value, 
+      this.registerForm.get('city').value,
+      this.registerForm.get('phone').value).subscribe(data => {
           this.router.navigate(['/login']);
         }
     );

@@ -1,6 +1,7 @@
 <div class="container">
   <h2>Register</h2>
   <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
+    
     <div class="form-group">
       <label for="firstName">First Name</label>
       <input type="text" class="form-control" formControlName="firstName" required>
@@ -17,13 +18,23 @@
     </div>
 
     <div class="form-group">
-      <label for="user">User Name</label>
-      <input type="text" class="form-control" formControlName="user" required>
+      <label for="city">City</label>
+      <input type="text" class="form-control" formControlName="city" required>
     </div>
+
+    <div class="form-group">
+        <label for="phone">Cellphone</label>
+        <input type="text" class="form-control" formControlName="phone" required>
+      </div>
 
     <div class="form-group">
       <label for="password">Password</label>
       <input type="password" class="form-control" formControlName="password">
+    </div>
+
+    <div class="form-group">
+        <label for="image">image</label>
+        <input type="text" class="form-control" formControlName="image">
     </div>
     <div>
       <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
