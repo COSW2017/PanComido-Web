@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Order } from '../models/order';
 import { AuthService } from '../common/auth.service';
 import {Dish} from "../models/dish";
+import { Restaurant } from '../models/restaurant';
 
 @Injectable()
 export class RestaurantService extends APIService {
@@ -38,6 +39,10 @@ export class RestaurantService extends APIService {
 
   deleteDish(id_dish : Number, id_restaurant: Number){
     return this.delete(this.resourceUrl + '/' + id_restaurant + '/dish/' + id_dish);
+  }
+
+  register(name: string, latitude: Number, longitude: Number){
+    return this.post(this.resourceUrl + '/register', new Restaurant(name, latitude, longitude, 0, 0, 0, 0, new Array<Order>(), new Array<Comment>()));
   }
 
 }

@@ -9,10 +9,10 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./register-page.component.css']
 })
 export class RegisterPageComponent implements OnInit {
+  
   registerForm : FormGroup;
 
-  constructor(
-    public router: Router,
+  constructor(public router: Router,
     public usersService : UsersService,
     public formBuilder: FormBuilder,
   ) { }
@@ -25,7 +25,8 @@ export class RegisterPageComponent implements OnInit {
       city: '',
       phone: '',
       password: '',
-      image: ''
+      image: '',
+      restaurant: false
     });
   }
 
@@ -38,8 +39,11 @@ export class RegisterPageComponent implements OnInit {
       this.registerForm.get('image').value, 
       this.registerForm.get('city').value,
       this.registerForm.get('phone').value).subscribe(data => {
-          this.router.navigate(['/login']);
+        if (this.registerForm.get('restaurant').value){
+          this.router.navigate(['/registerR']); ///mirar bien la direccion
+        }else{
+          this.router.navigate(['/login']);    
         }
-    );
+    });
   }
 }
