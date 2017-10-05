@@ -6,11 +6,15 @@
        <th>Número orden</th>
      </tr>
    </thead>
-   <tr *ngFor="let order of orders">
+   <tr ng-if="orders.length > 0" *ngFor="let order of orders">
        <td>{{order.id}}</td>
        <td><Button class="btn btn-primary" (click)="viewOrder(order.id)">Ver</Button>
         <Button class="btn btn-success">Lista</Button>
       </td>
+   </tr>
+
+   <tr ng-if="!orders.length > 0">
+     <td>No hay ordenes aún</td>
    </tr>
   </table>
         

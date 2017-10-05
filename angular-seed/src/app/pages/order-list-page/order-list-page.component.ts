@@ -13,6 +13,7 @@ import { OrderService } from '../../services/order.service';
   templateUrl: './order-list-page.component.html',
   styleUrls: ['./order-list-page.component.css']
 })
+
 export class OrderListPageComponent implements OnInit {
   private orders: Order[] = [];
   private user: User;
