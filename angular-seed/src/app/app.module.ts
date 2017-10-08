@@ -7,6 +7,8 @@ import { HttpModule } from '@angular/http';
 import { AppConfiguration } from './common/app-configuration.service';
 import { INITIAL_CONFIG } from './common/initial-config';
 
+import { APP_BASE_HREF } from '@angular/common';
+
 import { AppComponent } from './app.component';
 
 import { AppDataService } from './common/app-data.service';
@@ -122,6 +124,7 @@ const ROUTES = [
     UsersService,
     RestaurantService,
     OrderService,
+    { provide: APP_BASE_HREF, useValue: '/' }
   ],
   bootstrap: [AppComponent]
 })
