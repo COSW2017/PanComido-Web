@@ -40,7 +40,7 @@ import { RegisterRestaurantPageComponent } from './pages/register-restaurant-pag
 
 
 const ROUTES = [
-  { path: '', component: SignInPageComponent },
+  { path: '', component: HomePageComponent },
   { path: 'home', component: HomePageComponent },
   {
     path: 'tasks', component: TaskListPageComponent,

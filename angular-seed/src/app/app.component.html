@@ -1,4 +1,4 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+<!--nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
     aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -14,7 +14,7 @@
       </li-->
       <!--li class="nav-item">
         <a class="nav-link" routerLinkActive="/edit" routerLink="/user_edit">Edit Users</a>
-      </li-->
+      </li
       
       <li *ngIf="isLoggedIn()" class="nav-item">
         <a class="nav-link" routerLinkActive="/order" routerLink="/order">View Orders</a>
@@ -31,13 +31,41 @@
      <!--form class="form-inline my-2 my-lg-0" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidate>
          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" formControlName="search">
          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  data-toggle="modal" data-target="#exampleModal">>Search</button>
-     </form-->
+     </form>
+  </div>
+</nav>-->
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <!--a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a-->
+    <div>
+      <img class="navbar-brand white_logo js-scroll-trigger" src="img/large.png" >    
+      <img src="img/pequeno.png" class="navbar-brand color_logo js-scroll-trigger">
+    </div>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#about">Acerca de</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#services">Beneficios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#portfolio">Equipo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#contact">Contáctanos</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
