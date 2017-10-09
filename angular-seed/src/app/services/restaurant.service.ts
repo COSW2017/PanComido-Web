@@ -7,11 +7,13 @@ import { Order } from '../models/order';
 import { AuthService } from '../common/auth.service';
 import {Dish} from "../models/dish";
 import { Restaurant } from '../models/restaurant';
+import { Command } from '../models/command';
 
 @Injectable()
 export class RestaurantService extends APIService {
 
-  private resourceUrl = 'restaurant'
+  private resourceUrl = 'restaurant/'
+  private restaurant: Restaurant;
   
   constructor(
     public config: AppConfiguration,
@@ -21,28 +23,35 @@ export class RestaurantService extends APIService {
     super(config, authService, http);
   }
 
-  getOrders(id: Number): Observable <Order[]>{
-    return this.get(this.resourceUrl+"/"+id+"/"+"order");
+  getOwner(user_id: Number): Observable <Restaurant>{
+    return this.get(this.resourceUrl +"owner/"+ user_id)
+  }
+
+  getCommands(id_restaurant: Number): Observable <Command[]>{
+    //return this.get(this.resourceUrl+"/"+id_restaurant+"/"+"order");
+    return this.get(this.resourceUrl + id_restaurant +"/commands");
   }
 
   getDishes(id: Number): Observable <Dish[]>{
-      return this.get(this.resourceUrl + '/' + id + '/dish');
+      return this.get(this.resourceUrl + id + '/dish');
   }
 
-  getOrderById(id_restaurant: Number, id_order: Number): Observable <Order>{
-    return this.get(this.resourceUrl+"/"+id_restaurant+"/"+"order/"+id_order);
+  getCommandById(id_Command: Number): Observable <Command>{
+    return this.get(this.resourceUrl + "/commands/" + id_Command);
   }
 
   addDish(id: Number, name: string, price: Number, description: string, id_restaurant: Number) {
-      return this.post(this.resourceUrl + '/' + id_restaurant + '/dish', new Dish(id, name , price, description));
+      return this.post(this.resourceUrl + id_restaurant + '/dish', new Dish(id, name , price, description));
   }
 
   deleteDish(id_dish : Number, id_restaurant: Number){
-    return this.delete(this.resourceUrl + '/' + id_restaurant + '/dish/' + id_dish);
+    return this.delete(this.resourceUrl + id_restaurant + '/dish/' + id_dish);
   }
 
-  register(name: string, latitude: Number, longitude: Number){
-    return this.post(this.resourceUrl + '/register', new Restaurant(name, latitude, longitude, 0, 0, 0, 0, new Array<Order>(), new Array<Comment>()));
+  register(name: string, latitude: Number, longitude: Number, user_id: Number){
+    this.restaurant =new Restaurant(name, latitude, longitude, 0, 0, 0, 0, new Array<Order>(), new Array<Comment>());
+    this.restaurant.user_id = user_id;
+    return this.post(this.resourceUrl + 'register', this.restaurant);
   }
 
 }

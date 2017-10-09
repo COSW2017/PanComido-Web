@@ -3,6 +3,7 @@ import { Dish } from "./dish";
 
 export class Restaurant {
     public id_restaurant: Number;
+    public user_id: Number;
     private name: string;
     private latitude: Number;
     private longitude: Number;

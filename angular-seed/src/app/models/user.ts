@@ -2,6 +2,7 @@ import { Restaurant } from "./restaurant";
 import { Order } from "./order";
 
 export class User {
+    public id : number;
     private email: string;
     private password: string;
     public firstname: string;
@@ -12,7 +13,6 @@ export class User {
     public orders: Order[];
     public friends: User[];
     public pendingFriends: User[];
-    public restaurant: Restaurant;
 
     constructor(email: string, password: string, firstname: string, lastname: string, image: string, city: string, cellphone: string) {
         this.email = email;
@@ -23,4 +23,5 @@ export class User {
         this.city = city;
         this.cellphone = cellphone;
     }
+
 }

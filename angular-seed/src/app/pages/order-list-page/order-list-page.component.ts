@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/user';
 import { RestaurantService } from '../../services/restaurant.service';
 import { Dish } from '../../models/dish';
 import { UsersService } from '../../services/users.service';
 import { AuthService } from '../../common/auth.service';
-import { Order } from '../../models/order';
 import { Route, Router } from '@angular/router';
 import { OrderService } from '../../services/order.service';
+import { Restaurant } from '../../models/restaurant';
+import { Command } from '../../models/command';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-order-list-page',
@@ -15,26 +16,35 @@ import { OrderService } from '../../services/order.service';
 })
 
 export class OrderListPageComponent implements OnInit {
-  private orders: Order[] = [];
+  private commands: Command[] = [];
   private user: User;
+  private restaurant: Restaurant;
+  
   constructor(public restaurantService: RestaurantService,
     public usersService: UsersService,
     public authService: AuthService,
     public router: Router,
     public orderService: OrderService,) { }
 
-  viewOrder(id: Number){
-    this.orderService.id_order = id;
-    this.orderService.id_restaurant = this.user.restaurant.id_restaurant;
+  viewOrder(id_command: Number){
+    //Parametros que recibe orderDertail
+    this.orderService.id_command = id_command;
+    //ir a order detail
     this.router.navigate(['orderDetail']);
   }
 
   ngOnInit() {
+    //conocer el usuario propietario del restaurante
     this.usersService.find(this.authService.email).subscribe(userResponse => {
       this.user = userResponse;
-    this.restaurantService.getOrders(this.user.restaurant.id_restaurant).subscribe(restaurantResponse => {
-      this.orders = restaurantResponse;
+    //obtener el restaurante del que es propietario
+    this.restaurantService.getOwner(this.user.id).subscribe(restaurantRespose => {
+      this.restaurant = restaurantRespose;
+    //obtener la lista de pedidos del restaurante  
+    this.restaurantService.getCommands(this.restaurant.id_restaurant).subscribe(restaurantResponse => {
+      this.commands = restaurantResponse;
     });
+  });
   });
   }
 

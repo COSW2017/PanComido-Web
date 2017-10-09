@@ -1,20 +1,17 @@
 import { Restaurant } from "./restaurant";
 import { User } from "./user";
 import { Dish } from "./dish";
+import { Command } from "./command";
 
 export class Order {
-    private id: Number;
-    private restaurants: Restaurant[];
-    public users: User[];
-    public dishes: Dish[];
-    public state: Number;
+    private id_order: Number;
+    private date: Date;
+    private user_id: User;
+    private command: Command[];
 
-    constructor(id: Number, restaurants: Restaurant[], users: User[], dishes: Dish[], state: Number) {
-        this.id = id;
-        this.restaurants = restaurants;
-        this.users = users;
-        this.dishes = dishes;
-        this.state = state;
+    constructor(id_order: Number, user_id: User) {
+        this.id_order = id_order;
+        this.user_id = user_id;
     }
 
 }
