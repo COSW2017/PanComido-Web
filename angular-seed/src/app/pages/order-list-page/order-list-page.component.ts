@@ -36,15 +36,18 @@ export class OrderListPageComponent implements OnInit {
   ngOnInit() {
     //conocer el usuario propietario del restaurante
     this.usersService.find(this.authService.email).subscribe(userResponse => {
+      console.log(userResponse);
       this.user = userResponse;
       //obtener el restaurante del que es propietario
-      this.restaurantService.getOwner(this.user.id).subscribe(restaurantRespose => {
+      this.restaurantService.getOwner(this.user.user_id).subscribe(restaurantRespose => {
+        
         this.restaurant = restaurantRespose;
         //obtener la lista de pedidos del restaurante  
         this.restaurantService.getCommands(this.restaurant.id_restaurant).subscribe(restaurantResponse => {
           this.commands = restaurantResponse;
         });
       });
+      //falta captar el error
     });
   }
 

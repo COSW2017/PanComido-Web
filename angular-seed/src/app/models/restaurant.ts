@@ -1,31 +1,27 @@
 import { Order } from "./order";
 import { Dish } from "./dish";
+import { User } from "./user";
 
 export class Restaurant {
     public id_restaurant: Number;
-    public user_id: Number;
+    public user_id: User;
     private name: string;
     private latitude: Number;
     private longitude: Number;
-    private like: Number;
+    private likes: Number;
     private dislike: Number;
     private love: Number;
     private angry: Number;
-    private orders: Order[];
-    private comments: Comment[];
-    private dishes: Dish[];
 
 
-    constructor(name: string, latitude: Number, longitude: Number, like: Number, dislike: Number, love: Number, angry: Number, orders: Order[], comments: Comment[]) {
+    constructor(name: string, latitude: Number, longitude: Number) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.like = like;
-        this.dislike = dislike;
-        this.love = love;
-        this.angry = angry;
-        this.orders = orders;
-        this.comments = comments;
+        this.likes = 0;
+        this.dislike = 0;
+        this.love = 0;
+        this.angry = 0;
 
     }
 }

@@ -31,7 +31,7 @@ export class RegisterRestaurantPageComponent implements OnInit {
       this.registerRestaurantForm.get('Rname').value,
       this.registerRestaurantForm.get('latitude').value,
       this.registerRestaurantForm.get('longitude').value,
-      this.userService.actualUser.id).subscribe(data =>{
+      this.userService.actualUser).subscribe(data =>{
         //this.restaurant = data;
         this.router.navigate(['/login']);
       });
