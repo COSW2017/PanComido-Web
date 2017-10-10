@@ -2,7 +2,7 @@ import { Restaurant } from "./restaurant";
 import { Order } from "./order";
 
 export class User {
-    public id : number;
+    public user_id : number;
     private email: string;
     private user_password: string;
     public firstname: string;
