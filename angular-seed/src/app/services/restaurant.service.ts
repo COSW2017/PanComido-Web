@@ -8,6 +8,7 @@ import { AuthService } from '../common/auth.service';
 import {Dish} from "../models/dish";
 import { Restaurant } from '../models/restaurant';
 import { Command } from '../models/command';
+import { User } from '../models/user';
 
 @Injectable()
 export class RestaurantService extends APIService {
@@ -48,8 +49,8 @@ export class RestaurantService extends APIService {
     return this.delete(this.resourceUrl + id_restaurant + '/dish/' + id_dish);
   }
 
-  register(name: string, latitude: Number, longitude: Number, user_id: Number){
-    this.restaurant =new Restaurant(name, latitude, longitude, 0, 0, 0, 0, new Array<Order>(), new Array<Comment>());
+  register(name: string, latitude: Number, longitude: Number, user_id: User){
+    this.restaurant =new Restaurant(name, latitude, longitude);
     this.restaurant.user_id = user_id;
     return this.post(this.resourceUrl + 'register', this.restaurant);
   }

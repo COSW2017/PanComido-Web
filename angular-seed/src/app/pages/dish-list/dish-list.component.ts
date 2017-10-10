@@ -35,7 +35,7 @@ export class DishListComponent implements OnInit {
         this.usersService.find(this.authService.email).subscribe(userResponse => {
             this.user = userResponse;
             //obtener el restaurante del que es propietario
-            this.restaurantService.getOwner(this.user.id).subscribe(restaurantRespose => {
+            this.restaurantService.getOwner(this.user.user_id).subscribe(restaurantRespose => {
                 this.restaurant = restaurantRespose;
                 this.restaurantService.getDishes(this.restaurant.id_restaurant).subscribe(restaurantResponse => {
                     this.dishes = restaurantResponse;

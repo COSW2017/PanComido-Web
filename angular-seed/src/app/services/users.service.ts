@@ -39,11 +39,11 @@ export class UsersService extends APIService {
   }
 
   find(email: string): Observable<User> {
-    return this.get(this.findUrl+"?email="+email);
+    return this.post(this.findUrl, email);
   }
 
-  login(email: string, password: string) {
-    return this.post('user/login', { email, password }, { credentials: false }).map(loginResponse => {
+  login(email: string, user_password: string) {
+    return this.post('user/login', { email, user_password }, { credentials: false }).map(loginResponse => {
       if (loginResponse) {
         this.authService.accessToken = loginResponse.accessToken;
         this.authService.email = email;
