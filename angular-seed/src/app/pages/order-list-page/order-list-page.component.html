@@ -1,16 +1,20 @@
 <div class="container">
-  <h2>Orders</h2>
+  <h2>Commands</h2>
   <table class="table table-bordered">
    <thead>
      <tr>
-       <th>Número orden</th>
+       <th>Número pedido</th>
      </tr>
    </thead>
-   <tr *ngFor="let order of orders">
-       <td>{{order.id}}</td>
-       <td><Button class="btn btn-primary" (click)="viewOrder(order.id)">Ver</Button>
+   <tr ng-if="commands.length > 0" *ngFor="let command of commands">
+       <td>{{command.id_command}}</td>
+       <td><Button class="btn btn-primary" (click)="viewOrder(command.id_command)">Ver</Button>
         <Button class="btn btn-success">Lista</Button>
       </td>
+   </tr>
+
+   <tr ng-if="!commands.length > 0">
+     <td>No hay pedidos aún</td>
    </tr>
   </table>
         

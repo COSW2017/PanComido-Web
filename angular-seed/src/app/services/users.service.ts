@@ -13,6 +13,8 @@ export class UsersService extends APIService {
   private itemsUrl = 'user/items/';
   private createUrl = 'user/register/';
   private findUrl = 'user/search/';
+  private setGetRestaurant = 'user/restaurant'
+  public actualUser : User;
 
   constructor(
     public config: AppConfiguration,

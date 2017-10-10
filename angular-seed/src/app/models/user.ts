@@ -1,6 +1,8 @@
 import { Restaurant } from "./restaurant";
+import { Order } from "./order";
 
 export class User {
+    public id : number;
     private email: string;
     private password: string;
     public firstname: string;
@@ -8,7 +10,9 @@ export class User {
     private city: string;
     private image: string;
     private cellphone: string
-    public restaurant: Restaurant;
+    public orders: Order[];
+    public friends: User[];
+    public pendingFriends: User[];
 
     constructor(email: string, password: string, firstname: string, lastname: string, image: string, city: string, cellphone: string) {
         this.email = email;
@@ -19,4 +23,5 @@ export class User {
         this.city = city;
         this.cellphone = cellphone;
     }
+
 }

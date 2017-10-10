@@ -7,6 +7,7 @@ import {AuthService} from "../../common/auth.service";
 import {Router} from "@angular/router";
 import {OrderService} from "../../services/order.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import { Restaurant } from '../../models/restaurant';
 
 @Component({
   selector: 'app-dish-list',
@@ -17,6 +18,7 @@ export class DishListComponent implements OnInit {
 
     public dishes: Dish[] = [];
     private user: User;
+    private restaurant: Restaurant;
     userForm: FormGroup;
     public error: string;
 
@@ -32,9 +34,13 @@ export class DishListComponent implements OnInit {
     ngOnInit() {
         this.usersService.find(this.authService.email).subscribe(userResponse => {
             this.user = userResponse;
-            this.restaurantService.getDishes(this.user.restaurant.id_restaurant).subscribe(restaurantResponse => {
-                this.dishes = restaurantResponse;
-                console.log(this.dishes);
+            //obtener el restaurante del que es propietario
+            this.restaurantService.getOwner(this.user.id).subscribe(restaurantRespose => {
+                this.restaurant = restaurantRespose;
+                this.restaurantService.getDishes(this.restaurant.id_restaurant).subscribe(restaurantResponse => {
+                    this.dishes = restaurantResponse;
+                    console.log(this.dishes);
+                });
             });
         });
         this.userForm = this.formBuilder.group({
@@ -52,9 +58,9 @@ export class DishListComponent implements OnInit {
             this.userForm.get('name').value,
             this.userForm.get('price').value,
             this.userForm.get('description').value,
-            this.user.restaurant.id_restaurant
+            this.restaurant.id_restaurant
         ).subscribe(serverResponse => {
-            this.restaurantService.getDishes(this.user.restaurant.id_restaurant).subscribe(restaurantResponse => {
+            this.restaurantService.getDishes(this.restaurant.id_restaurant).subscribe(restaurantResponse => {
                 this.dishes = restaurantResponse;
                 console.log(this.dishes);
                 this.fileInput.nativeElement.click();
@@ -69,9 +75,9 @@ export class DishListComponent implements OnInit {
     deleteDish(id_dish : Number) {
       this.error = null;
       console.log(id_dish);
-      this.restaurantService.deleteDish(id_dish, this.user.restaurant.id_restaurant).subscribe(serverResponse => {
+      this.restaurantService.deleteDish(id_dish, this.restaurant.id_restaurant).subscribe(serverResponse => {
         console.log(serverResponse);
-        this.restaurantService.getDishes(this.user.restaurant.id_restaurant).subscribe(restaurantResponse => {
+        this.restaurantService.getDishes(this.restaurant.id_restaurant).subscribe(restaurantResponse => {
           this.dishes = restaurantResponse;
           console.log(this.dishes);
           }, error => {

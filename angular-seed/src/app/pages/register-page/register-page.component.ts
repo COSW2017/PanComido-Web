@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-register-page',
@@ -40,6 +41,7 @@ export class RegisterPageComponent implements OnInit {
       this.registerForm.get('city').value,
       this.registerForm.get('phone').value).subscribe(data => {
         if (this.registerForm.get('restaurant').value){
+          this.usersService.actualUser = data;
           this.router.navigate(['/registerR']); ///mirar bien la direccion
         }else{
           this.router.navigate(['/login']);    
