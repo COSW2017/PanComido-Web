@@ -16,6 +16,7 @@ import { Restaurant } from '../../models/restaurant';
 })
 export class DishListComponent implements OnInit {
 
+    public load: boolean;
     public dishes: Dish[] = [];
     private user: User;
     private restaurant: Restaurant;
@@ -32,6 +33,7 @@ export class DishListComponent implements OnInit {
                 public formBuilder: FormBuilder, ) { }
 
     ngOnInit() {
+        this.load = true;
         this.usersService.find(this.authService.email).subscribe(userResponse => {
             this.user = userResponse;
             //obtener el restaurante del que es propietario
@@ -39,7 +41,7 @@ export class DishListComponent implements OnInit {
                 this.restaurant = restaurantRespose;
                 this.restaurantService.getDishes(this.restaurant.id_restaurant).subscribe(restaurantResponse => {
                     this.dishes = restaurantResponse;
-                    console.log(this.dishes);
+                    this.load = false;
                 });
             });
         });
@@ -47,44 +49,48 @@ export class DishListComponent implements OnInit {
             id: '',
             name: '',
             price: '',
-            description: ''
+            description: '',
+            prep_time: "",
         });
     }
 
     onSubmit() {
+        this.load = true;
         this.error = null;
         this.restaurantService.addDish(
-            this.userForm.get('id').value,
             this.userForm.get('name').value,
             this.userForm.get('price').value,
             this.userForm.get('description').value,
-            this.restaurant.id_restaurant
+            this.userForm.get('prep_time').value,
+            this.restaurant
         ).subscribe(serverResponse => {
             this.restaurantService.getDishes(this.restaurant.id_restaurant).subscribe(restaurantResponse => {
                 this.dishes = restaurantResponse;
-                console.log(this.dishes);
                 this.fileInput.nativeElement.click();
                 this.userForm.reset();
+                this.load = false;
             });
         }, error => {
+            this.load = false;
             this.error = (error && error.message ? error.message : '');
         });
     }
 
 
     deleteDish(id_dish : Number) {
-      this.error = null;
-      console.log(id_dish);
-      this.restaurantService.deleteDish(id_dish, this.restaurant.id_restaurant).subscribe(serverResponse => {
-        console.log(serverResponse);
+        this.load = true;
+        this.error = null;
+        this.restaurantService.deleteDish(id_dish, this.restaurant.id_restaurant).subscribe(serverResponse => {
         this.restaurantService.getDishes(this.restaurant.id_restaurant).subscribe(restaurantResponse => {
           this.dishes = restaurantResponse;
-          console.log(this.dishes);
+          this.load = false;
           }, error => {
+            this.load = false;
             console.log(error);
         });
       }, error => {
-          this.error = (error && error.message ? error.message : '');
+            this.load = false;
+            this.error = (error && error.message ? error.message : '');
       });
     }
 

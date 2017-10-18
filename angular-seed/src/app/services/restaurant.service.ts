@@ -41,8 +41,12 @@ export class RestaurantService extends APIService {
     return this.get(this.resourceUrl + "/commands/" + id_Command);
   }
 
-  addDish(id: Number, name: string, price: Number, description: string, id_restaurant: Number) {
-      return this.post(this.resourceUrl + id_restaurant + '/dish', new Dish(id, name , price, description));
+  getDishesByCommandId(id_Command: Number): Observable <Dish[]>{
+    return this.get(this.resourceUrl + "/commands/" + id_Command+"/dish");
+  }
+
+  addDish(name: string, price: Number, description: string, prep_time: Number, restaurant: Restaurant) {
+      return this.post(this.resourceUrl + restaurant.id_restaurant + '/dish', new Dish(name , price, description, prep_time, restaurant));
   }
 
   deleteDish(id_dish : Number, id_restaurant: Number){

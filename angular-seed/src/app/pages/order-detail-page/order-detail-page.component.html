@@ -1,20 +1,30 @@
-<div class="container">
-  <h2>Command</h2>
-  <table class="table table-bordered">
-   <thead>
-     <tr>
-       <th>Plato</th>
-       <th>Estado</th>
-     </tr>
-   </thead>
-   <tr>
-       <td>
-          <tr *ngFor="let dish of dishes">
-              <td>{{dish.name}}</td>
-          </tr>
-      </td>
-      <td>{{state== 0 ? 'En proceso': 'Lista'}}</td>
-   </tr>
-  </table>
-        
+<ngx-loading [show]="load" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  <div class="page_container">    
+      <div class="container">
+          <div class="row">
+            <div class="col-lg-12 text-center">
+              <h2 class="section-heading">Command</h2>
+              <hr class="primary">
+            </div>
+          </div>
+      </div>
+    <div class="container">
+      <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Dish</th>
+          <th>State</th>
+        </tr>
+      </thead>
+      <tr>
+          <td>
+             <tr *ngFor="let dish of dishes">
+                 <td>{{dish.name}}</td>
+             </tr>
+         </td>
+         <td>{{state== 0 ? 'En proceso': 'Lista'}}</td>
+      </tr>
+      </table>
+            
+    </div>
   </div>

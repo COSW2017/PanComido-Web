@@ -48,17 +48,33 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+
+        <li *ngIf="!isLoggedIn()" class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#about">Acerca de</a>
         </li>
-        <li class="nav-item">
+
+        <li *ngIf="!isLoggedIn()" class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#services">Beneficios</a>
         </li>
-        <li class="nav-item">
+
+        <li *ngIf="!isLoggedIn()" class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#portfolio">Equipo</a>
         </li>
-        <li class="nav-item">
+
+        <li *ngIf="!isLoggedIn()" class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#contact">Contáctanos</a>
+        </li>
+
+        <li *ngIf="isLoggedIn()" class="nav-item">
+            <a class="nav-link" routerLinkActive="/order" routerLink="/order">View Commands</a>
+        </li>
+          
+        <li *ngIf="isLoggedIn()" class="nav-item">
+            <a class="nav-link" routerLinkActive="/dish" routerLink="/dish">View Dishes</a>
+        </li>
+
+        <li *ngIf="isLoggedIn()" class="nav-item">
+            <a href="#" class="nav-link" (click)="signOut()">(Sign Out)</a>
         </li>
       </ul>
     </div>

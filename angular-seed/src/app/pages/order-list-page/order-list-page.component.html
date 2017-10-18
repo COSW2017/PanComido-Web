@@ -1,21 +1,32 @@
-<div class="container">
-  <h2>Commands</h2>
-  <table class="table table-bordered">
-   <thead>
-     <tr>
-       <th>Número pedido</th>
-     </tr>
-   </thead>
-   <tr ng-if="commands.length > 0" *ngFor="let command of commands">
-       <td>{{command.id_command}}</td>
-       <td><Button class="btn btn-primary" (click)="viewOrder(command.id_command)">Ver</Button>
-        <Button class="btn btn-success">Lista</Button>
-      </td>
-   </tr>
+<ngx-loading [show]="load" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="page_container">    
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Commands</h2>
+            <hr class="primary">
+          </div>
+        </div>
+      </div>
+  <div class="container">
+    <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Command Id</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let command of commands">
+        <td>{{command.id_command}}</td>
+        <td><Button class="btn btn-primary" (click)="viewOrder(command.id_command)">Ver</Button>
+          <Button class="btn btn-success">Lista</Button>
+        </td>
+    </tr>
 
-   <tr ng-if="!commands.length > 0">
-     <td>No hay pedidos aún</td>
-   </tr>
-  </table>
-        
+    <tr *ngIf="commands.length == 0">
+      <td>No hay pedidos aún</td>
+    </tr>
+    </table>
+          
   </div>
+</div>

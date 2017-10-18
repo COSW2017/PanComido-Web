@@ -1,24 +1,43 @@
-<div class="container">
+<ngx-loading [show]="load" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="page_container">
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Register a restaurant</h2>
+            <hr class="primary">
+          </div>
+        </div>
+    </div>
   <div class="container">
-    <h2>Register Restaurant</h2>
-    <form [formGroup]="registerRestaurantForm" (ngSubmit)="register()" novalidate>
+      
+      <form [formGroup]="registerRestaurantForm" (ngSubmit)="register()" novalidate>
 
-      <div class="form-group">
-        <label for="Rname">Restaurant Name</label>
-        <input type="text" class="form-control" formControlName="Rname" required>
-      </div>
+        <div class="form-group">
+          <label for="Rname">Restaurant Name</label>
+          <input type="text" class="form-control" formControlName="Rname">
+          <small *ngIf="registerRestaurantForm.get('Rname').hasError('required') && registerRestaurantForm.get('Rname').dirty">Name Required!</small>
+          <small *ngIf="registerRestaurantForm.get('Rname').hasError('minlength') && registerRestaurantForm.get('Rname').dirty">At least 3 letters</small>
+        </div><br>
+        
 
-      <div class="form-group">
-        <label for="latitude">Latitude</label>
-        <input type="number" class="form-control" formControlName="latitude" required>
-      </div>
+        <div class="form-group">
+          <label for="latitude">Latitude</label>
+          <input type="number" class="form-control" formControlName="latitude">
+          <small *ngIf="registerRestaurantForm.get('latitude').hasError('required') && registerRestaurantForm.get('latitude').dirty">Required field</small>
+          <small *ngIf="registerRestaurantForm.get('latitude').hasError('min') && registerRestaurantForm.get('latitude').dirty">Must be more than -90</small>
+          <small *ngIf="registerRestaurantForm.get('latitude').hasError('max') && registerRestaurantForm.get('latitude').dirty">Must be less than 90</small>
+        </div><br>
 
-      <div class="form-group">
-        <label for="longitude">Longitude</label>
-        <input type="number" class="form-control" formControlName="longitude" required>
-      </div>
+        <div class="form-group">
+          <label for="longitude">Longitude</label>
+          <input type="number" class="form-control" formControlName="longitude">
+          <small *ngIf="registerRestaurantForm.get('longitude').hasError('required') && registerRestaurantForm.get('longitude').dirty">Required field</small>
+          <small *ngIf="registerRestaurantForm.get('longitude').hasError('min') && registerRestaurantForm.get('longitude').dirty">Must be more than -180</small>
+          <small *ngIf="registerRestaurantForm.get('longitude').hasError('max') && registerRestaurantForm.get('longitude').dirty">Must be less than 180</small>
+        </div><br>
 
-      <button type="submit" class="btn btn-default btn-block btn-custom" [disabled]="!registerRestaurantForm.valid">Register Restaurant</button>
-    </form>
-  </div>
+        <button type="submit" class="btn btn-default btn-block btn-custom" [disabled]="!registerRestaurantForm.valid">Register Restaurant</button>
+      </form>
+      <small *ngIf="error!=null">{{error}}</small>
+    </div>
 </div>

@@ -73,7 +73,8 @@ section {
   margin: 0 auto;
   text-align: center !important;
   padding: 120px 50px;
-  font-family: 'Montserrat', sans-serif; 
+  font-family: 'Montserrat', sans-serif;
+  position: relative; 
 }
 
 .section-heading {
