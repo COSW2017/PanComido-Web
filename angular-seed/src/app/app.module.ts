@@ -37,6 +37,7 @@ import { OrderService } from './services/order.service';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { DishListComponent } from './pages/dish-list/dish-list.component';
 import { RegisterRestaurantPageComponent } from './pages/register-restaurant-page/register-restaurant-page.component';
+import { DishDetailPageComponent } from './pages/dish-detail-page/dish-detail-page.component';
 
 
 const ROUTES = [
@@ -81,6 +82,10 @@ const ROUTES = [
       canActivate: [AuthService],
   },
   {
+    path: 'dishDetail', component: DishDetailPageComponent,
+    canActivate: [AuthService],
+  },
+  {
     path: '**', component: PageNotFoundComponent
   }
 ];
@@ -100,6 +105,7 @@ const ROUTES = [
     RegisterPageComponent,
     DishListComponent,
     RegisterRestaurantPageComponent,
+    DishDetailPageComponent,
   ],
   imports: [
     BrowserModule,

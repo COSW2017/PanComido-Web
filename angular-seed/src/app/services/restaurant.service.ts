@@ -15,6 +15,7 @@ export class RestaurantService extends APIService {
 
   private resourceUrl = 'restaurant/'
   private restaurant: Restaurant;
+  private dish : Dish;
   
   constructor(
     public config: AppConfiguration,
@@ -37,6 +38,10 @@ export class RestaurantService extends APIService {
       return this.get(this.resourceUrl + id + '/dish');
   }
 
+  getDishByDishId(id_dish: Number, id_restaurant : Number): Observable <Dish>{
+    return this.get(this.resourceUrl + id_restaurant + "/dish/" + id_dish);
+  }
+
   getCommandById(id_Command: Number): Observable <Command>{
     return this.get(this.resourceUrl + "/commands/" + id_Command);
   }
@@ -51,6 +56,12 @@ export class RestaurantService extends APIService {
 
   deleteDish(id_dish : Number, id_restaurant: Number){
     return this.delete(this.resourceUrl + id_restaurant + '/dish/' + id_dish);
+  }
+
+  modifyDish(name: string, price: Number, description: string, prep_time: Number, dish: Dish) {
+    this.dish = new Dish(name , price, description, prep_time, dish.restaurant);
+    this.dish.id_dish = dish.id_dish;
+    return this.put(this.resourceUrl + dish.restaurant.id_restaurant + '/dish', this.dish);
   }
 
   register(name: string, latitude: Number, longitude: Number, user_id: User){

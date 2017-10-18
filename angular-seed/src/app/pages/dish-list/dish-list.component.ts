@@ -6,7 +6,7 @@ import {UsersService} from "../../services/users.service";
 import {AuthService} from "../../common/auth.service";
 import {Router} from "@angular/router";
 import {OrderService} from "../../services/order.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, FormControl, Validators} from "@angular/forms";
 import { Restaurant } from '../../models/restaurant';
 
 @Component({
@@ -46,35 +46,43 @@ export class DishListComponent implements OnInit {
             });
         });
         this.userForm = this.formBuilder.group({
-            id: '',
-            name: '',
-            price: '',
-            description: '',
-            prep_time: "",
+            name: new FormControl ('', Validators.required),
+            price: new FormControl ('', Validators.compose([Validators.required, Validators.min(1)])),
+            description: new FormControl ('', Validators.required),
+            prep_time: new FormControl ('', Validators.compose([Validators.required, Validators.min(1)])),
         });
     }
 
     onSubmit() {
-        this.load = true;
-        this.error = null;
-        this.restaurantService.addDish(
-            this.userForm.get('name').value,
-            this.userForm.get('price').value,
-            this.userForm.get('description').value,
-            this.userForm.get('prep_time').value,
-            this.restaurant
-        ).subscribe(serverResponse => {
-            this.restaurantService.getDishes(this.restaurant.id_restaurant).subscribe(restaurantResponse => {
-                this.dishes = restaurantResponse;
-                this.fileInput.nativeElement.click();
-                this.userForm.reset();
+        if(this.userForm.valid){
+            this.load = true;
+            this.error = null;
+            this.restaurantService.addDish(
+                this.userForm.get('name').value,
+                this.userForm.get('price').value,
+                this.userForm.get('description').value,
+                this.userForm.get('prep_time').value,
+                this.restaurant
+            ).subscribe(serverResponse => {
+                this.restaurantService.getDishes(this.restaurant.id_restaurant).subscribe(restaurantResponse => {
+                    this.dishes = restaurantResponse;
+                    this.fileInput.nativeElement.click();
+                    this.userForm.reset();
+                    this.load = false;
+                });
+            }, error => {
                 this.load = false;
+                this.error = (error && error.message ? error.message : '');
             });
-        }, error => {
-            this.load = false;
-            this.error = (error && error.message ? error.message : '');
-        });
+        }
     }
+
+    modifyDish(id_command: Number){
+        //Parametros que recibe orderDertail
+        this.orderService.id_command = id_command;
+        //ir a order detail
+        this.router.navigate(['dishDetail']);
+      }
 
 
     deleteDish(id_dish : Number) {
