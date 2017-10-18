@@ -24,6 +24,7 @@ import { TaskListPageComponent } from './pages/task-list-page/task-list-page.com
 import { TaskEditPageComponent } from './pages/task-edit-page/task-edit-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
+import { LoadingModule } from 'ngx-loading';
 
 import { TodoService } from './services/todo.service';
 import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component';
@@ -105,7 +106,8 @@ const ROUTES = [
     //NgbModule.forRoot(),
     RouterModule.forRoot(ROUTES),
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    LoadingModule
   ],
   providers: [
     {

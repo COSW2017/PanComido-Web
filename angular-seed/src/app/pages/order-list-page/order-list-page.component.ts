@@ -16,9 +16,10 @@ import { User } from '../../models/user';
 })
 
 export class OrderListPageComponent implements OnInit {
-  private commands: Command[] = [];
+  public commands: Command[] = [];
   private user: User;
   private restaurant: Restaurant;
+  public load : boolean;
   
   constructor(public restaurantService: RestaurantService,
     public usersService: UsersService,
@@ -34,9 +35,9 @@ export class OrderListPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.load = true;
     //conocer el usuario propietario del restaurante
     this.usersService.find(this.authService.email).subscribe(userResponse => {
-      console.log(userResponse);
       this.user = userResponse;
       //obtener el restaurante del que es propietario
       this.restaurantService.getOwner(this.user.user_id).subscribe(restaurantRespose => {
@@ -45,6 +46,7 @@ export class OrderListPageComponent implements OnInit {
         //obtener la lista de pedidos del restaurante  
         this.restaurantService.getCommands(this.restaurant.id_restaurant).subscribe(restaurantResponse => {
           this.commands = restaurantResponse;
+          this.load = false;
         });
       });
       //falta captar el error

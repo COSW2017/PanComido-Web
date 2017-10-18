@@ -19,11 +19,13 @@ export class OrderDetailPageComponent implements OnInit {
     public orderService: OrderService,) { }
 
   ngOnInit() {
-    this.restaurantService.getCommandById(this.orderService.id_command).subscribe(restaurantResponse => {
-      this.command = restaurantResponse;
-      this.dishes = this.command.dishes;
-      this.state = this.command.state;
+    this.restaurantService.getDishesByCommandId(this.orderService.id_command).subscribe(restaurantResponse => {
+      this.dishes = restaurantResponse;
+      this.restaurantService.getCommandById(this.orderService.id_command).subscribe(commandResponse => {
+        this.command = commandResponse;
+        this.state = this.command.state;
+      });
     });
-  }
+  }//falta capturar los errores :P
 
 }

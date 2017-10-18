@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { RestaurantService } from '../../services/restaurant.service';
 import { Router } from '@angular/router';
 import { Restaurant } from '../../models/restaurant';
@@ -12,29 +12,42 @@ import { UsersService } from '../../services/users.service';
 export class RegisterRestaurantPageComponent implements OnInit {
   registerRestaurantForm : FormGroup;
   restaurant : Restaurant; 
+  public load : Boolean;
+
+  public error: string;
   
   constructor(public formBuilder: FormBuilder,
     public userService : UsersService,
     public restaurantService: RestaurantService,
     public router: Router) { }
 
-  ngOnInit() { 
+  ngOnInit(): void {
+    this.load = false;
     this.registerRestaurantForm = this.formBuilder.group({
-      Rname: '',
-      latitude: '',
-      longitude: ''
+      Rname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
+      latitude: new FormControl ('', Validators.compose([Validators.required, Validators.min(-90), Validators.max(90)])),
+      longitude: new FormControl ('', Validators.compose([Validators.required, Validators.min(-180), Validators.max(180)])),
     });
   }
 
   register(){
-    this.restaurantService.register(
-      this.registerRestaurantForm.get('Rname').value,
-      this.registerRestaurantForm.get('latitude').value,
-      this.registerRestaurantForm.get('longitude').value,
-      this.userService.actualUser).subscribe(data =>{
-        //this.restaurant = data;
-        this.router.navigate(['/login']);
-      });
-  }
+    if(this.registerRestaurantForm.valid){
+      this.load = true;
+      this.error = '';
+      this.restaurantService.register(
+        this.registerRestaurantForm.get('Rname').value,
+        this.registerRestaurantForm.get('latitude').value,
+        this.registerRestaurantForm.get('longitude').value,
+        this.userService.actualUser).subscribe(data =>{
+          this.load = false;
+          //this.restaurant = data;
+          this.router.navigate(['/login']);
+        },err =>{
+          this.load = false;
+          this.error = err.error;
+        });
+    }else{
 
+    }
+  }
 }

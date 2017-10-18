@@ -1,13 +1,19 @@
+import { Restaurant } from "./restaurant";
+
 export class Dish {
     public id_dish: Number;
     public name: string;
     public price: Number;
     public description: string;
+    public restaurant: Restaurant;
+    public prep_time: Number;
+    public image: string;
 
-    constructor(id_dish: Number, name: string, price: Number, description: string) {
-        this.id_dish = id_dish;
+    constructor(name: string, price: Number, description: string, prep_time: Number, restaurant: Restaurant) {
         this.name = name;
         this.price = price;
         this.description = description;
+        this.prep_time = prep_time;
+        this.restaurant = restaurant;
     }
 }
