@@ -5,9 +5,9 @@ import { User } from "./user";
 export class Restaurant {
     public id_restaurant: Number;
     public user_id: User;
-    private name: string;
-    private latitude: Number;
-    private longitude: Number;
+    public name: string;
+    public latitude: Number;
+    public longitude: Number;
     private likes: Number;
     private dislike: Number;
     private love: Number;
