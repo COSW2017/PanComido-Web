@@ -66,6 +66,8 @@ export class RestaurantEditPageComponent implements OnInit {
     this.restaurantService.update(this.restaurant).subscribe(restaurantResponse =>{
       this.restaurant = restaurantResponse;
       this.load = false;
+    }, error =>{
+      this.load = false;
     });
   }
   
