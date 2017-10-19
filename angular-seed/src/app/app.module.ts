@@ -38,6 +38,7 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { DishListComponent } from './pages/dish-list/dish-list.component';
 import { RegisterRestaurantPageComponent } from './pages/register-restaurant-page/register-restaurant-page.component';
 import { DishDetailPageComponent } from './pages/dish-detail-page/dish-detail-page.component';
+import { RestaurantEditPageComponent } from './pages/restaurant-edit-page/restaurant-edit-page.component';
 
 
 const ROUTES = [
@@ -86,6 +87,10 @@ const ROUTES = [
     canActivate: [AuthService],
   },
   {
+    path: 'settings', component: RestaurantEditPageComponent,
+    canActivate: [AuthService],
+  },
+  {
     path: '**', component: PageNotFoundComponent
   }
 ];
@@ -106,6 +111,7 @@ const ROUTES = [
     DishListComponent,
     RegisterRestaurantPageComponent,
     DishDetailPageComponent,
+    RestaurantEditPageComponent,
   ],
   imports: [
     BrowserModule,

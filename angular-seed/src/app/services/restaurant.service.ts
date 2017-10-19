@@ -43,11 +43,11 @@ export class RestaurantService extends APIService {
   }
 
   getCommandById(id_Command: Number): Observable <Command>{
-    return this.get(this.resourceUrl + "/commands/" + id_Command);
+    return this.get(this.resourceUrl + "commands/" + id_Command);
   }
 
   getDishesByCommandId(id_Command: Number): Observable <Dish[]>{
-    return this.get(this.resourceUrl + "/commands/" + id_Command+"/dish");
+    return this.get(this.resourceUrl + "commands/" + id_Command+"/dish");
   }
 
   addDish(name: string, price: Number, description: string, prep_time: Number, restaurant: Restaurant) {
@@ -68,6 +68,11 @@ export class RestaurantService extends APIService {
     this.restaurant =new Restaurant(name, latitude, longitude);
     this.restaurant.user_id = user_id;
     return this.post(this.resourceUrl + 'register', this.restaurant);
+  }
+
+  update(restaurant: Restaurant){
+    console.log("enviando");
+    return this.put(this.resourceUrl + 'update', restaurant);
   }
 
 }
