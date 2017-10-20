@@ -7,11 +7,9 @@ export class Order {
     private id_order: Number;
     private date: Date;
     private user_id: User;
-    private command: Command[];
 
-    constructor(id_order: Number, user_id: User) {
-        this.id_order = id_order;
+    constructor(user_id: User, date: Date) {
         this.user_id = user_id;
+        this.date = date; 
     }
-
 }

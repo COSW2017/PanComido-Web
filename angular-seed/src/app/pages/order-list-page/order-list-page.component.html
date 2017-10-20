@@ -12,26 +12,27 @@
     <table class="table table-bordered">
     <thead>
       <tr>
+        <th>Date</th>
         <th>Command Id</th>
         <th>Actions</th>
         <th>State</th>
       </tr>
     </thead>
     <tr *ngFor="let command of commands">
-        <td>{{command.id_command}}</td>
-        <td>
-          <Button class="btn btn-primary" (click)="viewOrder(command.id_command)">Show</Button>
-          <Button class="btn btn-success" >Ready</Button>
+        <td  *ngIf="command.state<2">{{ command.creation_date | date }}</td>
+        <td  *ngIf="command.state<2">{{command.id_command}}</td>
+        <td  *ngIf="command.state<2">
+          <Button class="btn btn-primary" (click)="viewOrder(command.id_command)">Detail</Button>
+          <Button class="btn btn-success" (click)="changeCommandState(command, 2)" [disabled]="command.state>1" data-toggle="modal" data-target="#exampleModal">Ready</Button>
         </td>
-        <td>
+        <td *ngIf="command.state<2">
             <p *ngIf="command.state == 0">Queued</p><p *ngIf="command.state == 1">In progress</p><p *ngIf="command.state == 2">Ready</p><p *ngIf="command.state == 3">Delivered</p>
         </td>
     </tr>
-
     <tr *ngIf="commands.length == 0">
       <td>No hay pedidos aún</td>
     </tr>
     </table>
-          
+    <Button id="buttonDeliver" class="btn btn-warning" routerLinkActive="/orderDelivery" routerLink="/orderDelivery">Show</Button>
   </div>
 </div>

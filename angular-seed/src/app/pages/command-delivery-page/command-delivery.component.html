@@ -1,0 +1,36 @@
+<ngx-loading [show]="load" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="page_container">    
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Command Delivery</h2>
+            <hr class="primary">
+          </div>
+        </div>
+      </div>
+  <div class="container">
+    <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Command Id</th>
+        <th>User Name</th>
+        <th>State</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let command of commands; let i = index">
+        <td *ngIf="command.state==2">{{command.id_command}}</td>
+        <td *ngIf="command.state==2">{{orders[i].user_id.firstname}} {{orders[i].user_id.lastname}}</td>
+        <td *ngIf="command.state==2">
+          <p *ngIf="command.state == 2">Ready</p><p *ngIf="command.state == 3">Delivered</p>
+        </td>
+        <td *ngIf="command.state==2">
+          <Button class="btn btn-success" (click)="changeCommandState(command, 3)">Deliver</Button>
+        </td>
+    </tr>
+    <tr *ngIf="commands.length == 0">
+      <td>No hay pedidos aún</td>
+    </tr>
+    </table>
+  </div>
+</div>
