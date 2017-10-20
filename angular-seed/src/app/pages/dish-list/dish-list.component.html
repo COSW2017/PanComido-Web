@@ -1,5 +1,5 @@
-<ngx-loading [show]="load" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-<div class="page_container">    
+<ngx-loading [show]="load" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading> 
+<div class="page_container">   
     <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -22,7 +22,9 @@
       <td>{{dish.name}}</td>
       <td>{{dish.price}}</td>
       <td>{{dish.description}}</td>
-      <td><Button class="btn btn-primary" (click)="deleteDish(dish.id_dish)">Delete</Button>
+      <td>
+        <button class="btn btn-success" (click)="modifyDish(dish.id_dish)">Modify</button>
+        <button class="btn btn-primary" (click)="deleteDish(dish.id_dish)">Delete</button>
       </td>
     </tr>
   </table>
@@ -36,7 +38,7 @@
   <!-- Modal -->
   <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
+      <ngx-loading [show]="load" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -46,29 +48,35 @@
         <div class="modal-body">
           <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
             <div class="form-group">
-
-
-            <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" formControlName="name" required>
-            </div>
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" formControlName="name">
+              <small *ngIf="userForm.get('name').hasError('required') && userForm.get('name').dirty">Required field</small>
+            </div><br>
 
             <div class="form-group">
               <label for="price">Price</label>
-              <input type="number" class="form-control" id="price" formControlName="price" required>
-            </div>
+              <input type="number" class="form-control" id="price" formControlName="price">
+              <small *ngIf="userForm.get('price').hasError('required') && userForm.get('price').dirty">Required field</small>
+              <small *ngIf="userForm.get('price').hasError('min') && userForm.get('price').dirty">Price must be a positive integer</small>
+            </div><br>
 
             <div class="form-group">
                 <label for="prep_time">Cooking time (min)</label>
-                <input type="number" class="form-control" id="prep_time" formControlName="prep_time" required>
-              </div>
+                <input type="number" class="form-control" id="prep_time" formControlName="prep_time">
+                <small *ngIf="userForm.get('prep_time').hasError('required') && userForm.get('prep_time').dirty">Required field</small>
+                <small *ngIf="userForm.get('prep_time').hasError('min') && userForm.get('prep_time').dirty">Cooking time must be a positive integer</small>
+              </div><br>
 
             <div class="form-group">
               <label for="description">Description</label>
               <input type="text" class="form-control" id="description" formControlName="description" required>
-            </div>
+              <small *ngIf="userForm.get('description').hasError('required') && userForm.get('description').dirty">Required field</small>
+            </div><br>
 
-
-            <button type="submit" class="btn btn-success">Add</button>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Add</button>
+            </div><br>
+            
 
           </form>
         </div>
@@ -79,4 +87,5 @@
 
     </div>
   </div>
+</div>
 </div>

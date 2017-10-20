@@ -16,6 +16,10 @@ body {
   text-align: left;
 }
 
+input.ng-valid{
+  border: thin solid #090;
+}
+
 hr {
   max-width: 50px;
   border-width: 3px;
@@ -69,7 +73,7 @@ section {
 
 .page_container{
   width: 100%;
-  max-width: 600px;
+  max-width: 900px;
   margin: 0 auto;
   text-align: center !important;
   padding: 120px 50px;
