@@ -13,7 +13,8 @@
       <table class="table table-bordered">
       <thead>
         <tr>
-          <th>Dish</th>
+          <th>Image</th>
+          <th>Name</th>
           <th>Price</th>
           <th>Cooking time</th>
           <th>Description</th>
@@ -22,21 +23,24 @@
       
         <tr *ngIf="dish!=null">
             <td>
-              <input type="text" class="form-control" formControlName="name" value="{{dish.name}}">
+              <input type="text" class="form-control" formControlName="image">
+            </td>
+            <td>
+              <input type="text" class="form-control" formControlName="name">
               <small *ngIf="dishDetailForm.get('name').hasError('required') && dishDetailForm.get('name').dirty">Required field</small>              
             </td>
             <td>
-              <input type="number" class="form-control" formControlName="price" value="{{dish.price}}">
+              <input type="number" class="form-control" formControlName="price">
               <small *ngIf="dishDetailForm.get('price').hasError('required') && dishDetailForm.get('price').dirty">Required field</small>
               <small *ngIf="dishDetailForm.get('price').hasError('min') && dishDetailForm.get('price').dirty">Price must be a positive integer</small>
             </td>
             <td>
-              <input type="number" class="form-control" formControlName="prep_time" value="{{dish.prep_time}}">
+              <input type="number" class="form-control" formControlName="prep_time">
               <small *ngIf="dishDetailForm.get('prep_time').hasError('required') && dishDetailForm.get('prep_time').dirty">Required field</small>
               <small *ngIf="dishDetailForm.get('prep_time').hasError('min') && dishDetailForm.get('prep_time').dirty">Cooking time must be a positive integer</small>
             </td>
             <td>
-              <input type="text" class="form-control" formControlName="description" value="{{dish.description}}">
+              <input type="text" class="form-control" formControlName="description">
               <small *ngIf="dishDetailForm.get('description').hasError('required') && dishDetailForm.get('description').dirty">Required field</small>              
             </td>
         </tr>

@@ -12,6 +12,7 @@
   <table class="table table-bordered">
     <thead>
     <tr>
+      <th>Dish image</th>
       <th>Dish name</th>
       <th>Dish price</th>
       <th>Dish description</th>
@@ -19,6 +20,7 @@
     </tr>
     </thead>
     <tr *ngFor="let dish of dishes">
+      <td><img src="{{dish.image}}" width="200px"/></td>
       <td>{{dish.name}}</td>
       <td>{{dish.price}}</td>
       <td>{{dish.description}}</td>

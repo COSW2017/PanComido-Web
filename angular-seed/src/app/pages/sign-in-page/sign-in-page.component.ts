@@ -11,6 +11,7 @@ import { UsersService } from '../../services/users.service';
 export class SignInPageComponent implements OnInit {
   signInForm : FormGroup;
   loginError : string;
+  private load: Boolean;
   constructor(
     public usersService : UsersService,
     public formBuilder: FormBuilder,
@@ -25,12 +26,15 @@ export class SignInPageComponent implements OnInit {
   }
 
   doLogin() {
+    this.load = true;
     this.usersService.login(
       this.signInForm.get('username').value,
       this.signInForm.get('password').value).subscribe(loginResponse => {
         this.router.navigate(['order']);
+        this.load = false;
       }, error => {
         this.loginError = 'Error Signing in: ' + (error && error.message ? error.message : '');
+        this.load = false;
       });
   }
 

@@ -27,12 +27,6 @@ export class DishDetailPageComponent implements OnInit {
     public router : Router) { }
 
   ngOnInit() {
-    this.dishDetailForm = this.formBuilder.group({
-      name: new FormControl ('', Validators.required),
-      price: new FormControl ('', Validators.compose([Validators.required, Validators.min(1)])),
-      description: new FormControl ('', Validators.required),
-      prep_time: new FormControl ('', Validators.compose([Validators.required, Validators.min(1)])),
-    });
     this.load = true;
     this.dish = null;
     //conocer el usuario propietario del restaurante
@@ -43,16 +37,28 @@ export class DishDetailPageComponent implements OnInit {
         this.restaurantService.getDishByDishId(this.orderService.id_command, restaurantRespose.id_restaurant).subscribe(restaurantResponse => {
           this.dish = restaurantResponse;
           //lamar funcion para cargar valores
+          this.loadForm();
           this.load = false;
         });
       });
     });//falta capturar los errores :P
   }
 
+  loadForm(){
+    this.dishDetailForm = this.formBuilder.group({
+      name: new FormControl (this.dish.name, Validators.required),
+      image: new FormControl (this.dish.image),
+      price: new FormControl (this.dish.price, Validators.compose([Validators.required, Validators.min(1)])),
+      description: new FormControl (this.dish.description, Validators.required),
+      prep_time: new FormControl (this.dish.prep_time, Validators.compose([Validators.required, Validators.min(1)])),
+    });
+  }
+
   modifyDish() {
     if(this.dishDetailForm.valid){
       this.load = true;
       this.restaurantService.modifyDish(
+        this.dishDetailForm.get('image').value,
         this.dishDetailForm.get('name').value,
         this.dishDetailForm.get('price').value,
         this.dishDetailForm.get('description').value,
