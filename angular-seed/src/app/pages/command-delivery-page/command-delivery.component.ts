@@ -1,39 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService } from '../../services/restaurant.service';
-import { Dish } from '../../models/dish';
-import { UsersService } from '../../services/users.service';
-import { AuthService } from '../../common/auth.service';
+import { Command } from "../../models/command";
+import { User } from "../../models/user";
+import { Restaurant } from "../../models/restaurant";
+import { RestaurantService } from "../../services/restaurant.service";
+import { UsersService } from "../../services/users.service";
+import { AuthService } from "../../common/auth.service";
+import { OrderService } from "../../services/order.service";
 import { Route, Router } from '@angular/router';
-import { OrderService } from '../../services/order.service';
-import { Restaurant } from '../../models/restaurant';
-import { Command } from '../../models/command';
-import { User } from '../../models/user';
+import { Order } from "../../models/order";
+
 
 @Component({
-  selector: 'app-order-list-page',
-  templateUrl: './order-list-page.component.html',
-  styleUrls: ['./order-list-page.component.css']
+  selector: 'app-command-delivery-page',
+  templateUrl: './command-delivery.component.html',
+  styleUrls: ['./command-delivery.component.css']
 })
+export class CommandDeliveryPageComponent implements OnInit {
 
-export class OrderListPageComponent implements OnInit {
   public commands: Command[] = [];
   private user: User;
+  public orders : Order[] = []; 
   private restaurant: Restaurant;
   public load : boolean;
-  
+
   constructor(public restaurantService: RestaurantService,
     public usersService: UsersService,
     public authService: AuthService,
     public router: Router,
     public orderService: OrderService,) { }
 
-  viewOrder(id_command: Number){
-    //Parametros que recibe orderDertail
-    this.orderService.id_command = id_command;
-    //ir a order detail
-    this.router.navigate(['orderDetail']);
-  }
-
+  
   changeCommandState(command: Command, state: Number){
     this.orderService.id_command = command.id_command;
     command.state= state; 
@@ -56,6 +52,11 @@ export class OrderListPageComponent implements OnInit {
           this.commands = restaurantResponse;
           this.load = false;
         });
+
+        this.restaurantService.getRestaurantOrders(this.restaurant.id_restaurant).subscribe(restaurantRespose=>{
+          this.orders = restaurantRespose;
+          this.load = false;
+        })
       });
       //falta captar el error
     });
