@@ -58,8 +58,9 @@ export class RestaurantService extends APIService {
     return this.delete(this.resourceUrl + id_restaurant + '/dish/' + id_dish);
   }
 
-  modifyDish(name: string, price: Number, description: string, prep_time: Number, dish: Dish) {
+  modifyDish(image: string, name: string, price: Number, description: string, prep_time: Number, dish: Dish) {
     this.dish = new Dish(name , price, description, prep_time, dish.restaurant);
+    this.dish.image = image;
     this.dish.id_dish = dish.id_dish;
     return this.put(this.resourceUrl + dish.restaurant.id_restaurant + '/dish', this.dish);
   }
