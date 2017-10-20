@@ -2,7 +2,7 @@ import { Order } from "./order";
 import { Dish } from "./dish";
 
 export class Command {
-    private id_command: Number;
+    public id_command: Number;
     public state: Number;
     private creation_date: Date;
     private id_order: Order;

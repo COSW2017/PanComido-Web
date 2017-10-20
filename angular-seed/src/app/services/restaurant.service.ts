@@ -59,4 +59,8 @@ export class RestaurantService extends APIService {
     return this.post(this.resourceUrl + 'register', this.restaurant);
   }
 
+  changeCommandState(command : Command, id_restaurant : Number){
+    return this.put(this.resourceUrl+id_restaurant+'/command', command); 
+  }
+
 }

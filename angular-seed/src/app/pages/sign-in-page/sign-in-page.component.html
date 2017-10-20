@@ -2,17 +2,30 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
-<div class="page_container">
+<div class="page_container_login">
   <div id="login-box">
     <form [formGroup]="signInForm" (ngSubmit)="doLogin()" novalidate>
       <div class="logo">
-          <img src="https://pbs.twimg.com/profile_images/610133405175541760/zDXW32lq.jpg" class="img img-responsive img-circle center-block"/>
+          <img src="img/panComido.png" class="img img-responsive img-circle center-block"/>
           <h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
       </div><!-- /.logo -->
+      <hr class="primary">
       <div class="controls">
-          <input type="text" name="username" placeholder="Username" class="form-control" id="description" formControlName="username" required/>
-          <input type="password" name="username" placeholder="Password" class="form-control" id="alterEgo" formControlName="password"/>
-          <button type="submit" class="btn btn-default btn-block btn-custom" [disabled]="!signInForm.valid">Sign In</button>
+          <div class="form-group">
+              <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                  <input type="text" name="username" placeholder="Username" class="form-control" id="description" formControlName="username" required/>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  <input type="password" name="username" placeholder="Password" class="form-control" id="alterEgo" formControlName="password"/>
+              </div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" [disabled]="!signInForm.valid">Sign In</button>
       </div><!-- /.controls -->
       <a [routerLink]="['/register']" class="btn btn-link btn-block btn-custom">Register</a>
       <p class="text-danger mt-1" *ngIf="loginError">{{loginError}}</p>

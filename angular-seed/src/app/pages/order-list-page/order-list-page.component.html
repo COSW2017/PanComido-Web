@@ -18,8 +18,14 @@
     </thead>
     <tr *ngFor="let command of commands">
         <td>{{command.id_command}}</td>
-        <td><Button class="btn btn-primary" (click)="viewOrder(command.id_command)">Ver</Button>
-          <Button class="btn btn-success">Lista</Button>
+        <td>
+          <Button class="btn btn-primary" (click)="viewOrder(command.id_command)">Ver</Button>
+        </td>
+        <td>
+          <Button class="btn btn-success" >Entregar</Button>
+        </td>
+        <td>
+          <p>Estado: </p><p *ngIf="command.state == 0">En cola</p><p *ngIf="command.state == 1">En progreso</p><p *ngIf="command.state == 2">Lista</p><p *ngIf="command.state == 3">Entregada</p>
         </td>
     </tr>
 

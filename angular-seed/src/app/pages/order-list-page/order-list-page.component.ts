@@ -34,6 +34,15 @@ export class OrderListPageComponent implements OnInit {
     this.router.navigate(['orderDetail']);
   }
 
+  changeCommandState(command: Command, state: Number){
+    this.orderService.id_command = command.id_command;
+    command.state= state; 
+    this.restaurantService.changeCommandState(command, this.restaurant.id_restaurant); 
+    this.router.navigate(['orderDelivery']); 
+  }
+
+
+
   ngOnInit() {
     this.load = true;
     //conocer el usuario propietario del restaurante
