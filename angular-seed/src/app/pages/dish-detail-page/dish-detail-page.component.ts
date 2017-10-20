@@ -42,6 +42,7 @@ export class DishDetailPageComponent implements OnInit {
         //obtener la lista de pedidos del restaurante  
         this.restaurantService.getDishByDishId(this.orderService.id_command, restaurantRespose.id_restaurant).subscribe(restaurantResponse => {
           this.dish = restaurantResponse;
+          //lamar funcion para cargar valores
           this.load = false;
         });
       });

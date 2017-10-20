@@ -51,9 +51,9 @@ export class RestaurantEditPageComponent implements OnInit {
 
   public setValues(): void {
     this.editRestaurantForm = this.formBuilder.group({
-      Rname: this.nombre,
-      latitude: this.latitude,
-      longitude: this.longitude,
+      Rname: new FormControl (this.nombre, Validators.compose([Validators.required, Validators.minLength(3)])),
+      latitude: new FormControl (this.latitude, Validators.compose([Validators.required, Validators.min(-90), Validators.max(90)])),
+      longitude: new FormControl (this.longitude, Validators.compose([Validators.required, Validators.min(-180), Validators.max(180)])),
     });
   }
 
