@@ -23,7 +23,7 @@
         <td  *ngIf="command.state<2">{{command.id_command}}</td>
         <td  *ngIf="command.state<2">
           <Button class="btn btn-primary" (click)="viewOrder(command.id_command)">Detail</Button>
-          <Button class="btn btn-success" (click)="changeCommandState(command, 2)" [disabled]="command.state>1" data-toggle="modal" data-target="#exampleModal">Ready</Button>
+          <Button class="btn btn-success" (click)="changeCommandState(command, 2)" [disabled]="command.state>1" >Ready</Button>
         </td>
         <td *ngIf="command.state<2">
             <p *ngIf="command.state == 0">Queued</p><p *ngIf="command.state == 1">In progress</p><p *ngIf="command.state == 2">Ready</p><p *ngIf="command.state == 3">Delivered</p>

@@ -20,7 +20,7 @@
     </thead>
     <tr *ngFor="let command of commands; let i = index">
         <td *ngIf="command.state==2">{{command.id_command}}</td>
-        <td *ngIf="command.state==2">{{orders[i].user_id.firstname}} {{orders[i].user_id.lastname}}</td>
+        <td *ngIf="!(orders[i].user_id==null)" ><p *ngIf="command.state==2">{{orders[i].user_id.firstname}} {{orders[i].user_id.lastname}}</p></td>
         <td *ngIf="command.state==2">
           <p *ngIf="command.state == 2">Ready</p><p *ngIf="command.state == 3">Delivered</p>
         </td>
