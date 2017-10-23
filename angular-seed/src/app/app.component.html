@@ -68,10 +68,14 @@
         <li *ngIf="isLoggedIn()" class="nav-item">
             <a class="nav-link" routerLinkActive="/order" routerLink="/order">View Commands</a>
         </li>
-          
+
         <li *ngIf="isLoggedIn()" class="nav-item">
             <a class="nav-link" routerLinkActive="/dish" routerLink="/dish">View Dishes</a>
         </li>
+
+          <li *ngIf="isLoggedIn()" class="nav-item">
+              <a class="nav-link" routerLinkActive="/commandDish" routerLink="/commandDish">Add Dish</a>
+          </li>
 
         <li *ngIf="isLoggedIn()" class="nav-item">
           <a class="nav-link" routerLinkActive="/settings" routerLink="/settings">Settings</a>

@@ -1,0 +1,33 @@
+<ngx-loading [show]="load" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="page_container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Add a Dish</h2>
+                <hr class="primary">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+            <tr *ngFor="let dish of dishes">
+                <td><img src="{{dish.image}}" width="200px"/></td>
+                <td>{{dish.name}}</td>
+                <td>{{dish.price}}</td>
+                <td>{{dish.description}}</td>
+                <td>
+                    <button class="btn btn-success" (click)="addDishC(dish.id_dish)">Modify</button>
+                    <button class="btn btn-primary" (click)="deleteDishC(dish.id_dish)">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

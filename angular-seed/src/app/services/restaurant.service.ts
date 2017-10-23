@@ -84,4 +84,7 @@ export class RestaurantService extends APIService {
     return this.get(this.resourceUrl + id_restaurant + '/order');
   }
 
+  getRestaurantByName(name: string){
+    return this.get(this.resourceUrl + name);
+  }
 }
