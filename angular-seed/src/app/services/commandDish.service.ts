@@ -6,7 +6,7 @@ import { AuthService } from '../common/auth.service';
 import { Dish } from "../models/dish";
 import { Command } from '../models/command';
 
-@Injectable
+@Injectable()
 export class CommandDishService extends APIService {
 
   private resourceUrl = 'commandDish/'
@@ -20,7 +20,7 @@ export class CommandDishService extends APIService {
   }
 
   addDishC(id_dish : Number, id_command: Number){
-    return this.post(this.resourceUrl + id_command + id_dish);
+    return this.post(this.resourceUrl + id_command + id_dish, Boolean);
   }
 
   deleteDishC(id_dish : Number, id_command: Number){
