@@ -18,6 +18,7 @@ export class RestaurantEditPageComponent implements OnInit {
   private nombre: string;
   private latitude: string;
   private longitude: string;
+  private image: string;
   private user: User;
   public load : Boolean;
   
@@ -37,6 +38,7 @@ export class RestaurantEditPageComponent implements OnInit {
         this.nombre = this.restaurant.name;
         this.latitude = this.restaurant.latitude+"";
         this.longitude = this.restaurant.longitude+"";
+        this.image = this.restaurant.image;
         this.setValues();
         this.load = false;  
       });
@@ -45,6 +47,7 @@ export class RestaurantEditPageComponent implements OnInit {
       Rname: '',
       latitude: '',
       longitude: '',
+      image: ''
     });
     
   }
@@ -54,6 +57,7 @@ export class RestaurantEditPageComponent implements OnInit {
       Rname: new FormControl (this.nombre, Validators.compose([Validators.required, Validators.minLength(3)])),
       latitude: new FormControl (this.latitude, Validators.compose([Validators.required, Validators.min(-90), Validators.max(90)])),
       longitude: new FormControl (this.longitude, Validators.compose([Validators.required, Validators.min(-180), Validators.max(180)])),
+      image: new FormControl(this.image)
     });
   }
 
@@ -63,6 +67,7 @@ export class RestaurantEditPageComponent implements OnInit {
     this.restaurant.name = this.editRestaurantForm.get("Rname").value;
     this.restaurant.latitude = this.editRestaurantForm.get("latitude").value;
     this.restaurant.longitude = this.editRestaurantForm.get("longitude").value;
+    this.restaurant.image = this.editRestaurantForm.get("image").value;
     this.restaurantService.update(this.restaurant).subscribe(restaurantResponse =>{
       this.restaurant = restaurantResponse;
       this.load = false;

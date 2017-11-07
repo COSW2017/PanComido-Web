@@ -12,12 +12,14 @@ export class Restaurant {
     private dislike: Number;
     private love: Number;
     private angry: Number;
+    public image: string;
 
 
-    constructor(name: string, latitude: Number, longitude: Number) {
+    constructor(name: string, latitude: Number, longitude: Number, image: string) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.image = image;
         this.likes = 0;
         this.dislike = 0;
         this.love = 0;

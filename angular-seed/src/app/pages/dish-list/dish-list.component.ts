@@ -50,6 +50,7 @@ export class DishListComponent implements OnInit {
             price: new FormControl ('', Validators.compose([Validators.required, Validators.min(1)])),
             description: new FormControl ('', Validators.required),
             prep_time: new FormControl ('', Validators.compose([Validators.required, Validators.min(1)])),
+            image: new FormControl('')
         });
     }
 
@@ -62,6 +63,7 @@ export class DishListComponent implements OnInit {
                 this.userForm.get('price').value,
                 this.userForm.get('description').value,
                 this.userForm.get('prep_time').value,
+                this.userForm.get('image').value,
                 this.restaurant
             ).subscribe(serverResponse => {
                 this.restaurantService.getDishes(this.restaurant.id_restaurant).subscribe(restaurantResponse => {

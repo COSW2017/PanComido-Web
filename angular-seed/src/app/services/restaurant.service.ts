@@ -50,8 +50,8 @@ export class RestaurantService extends APIService {
     return this.get(this.resourceUrl + "commands/" + id_Command+"/dish");
   }
 
-  addDish(name: string, price: Number, description: string, prep_time: Number, restaurant: Restaurant) {
-      return this.post(this.resourceUrl + restaurant.id_restaurant + '/dish', new Dish(name , price, description, prep_time, restaurant));
+  addDish(name: string, price: Number, description: string, prep_time: Number, image: string, restaurant: Restaurant) {
+      return this.post(this.resourceUrl + restaurant.id_restaurant + '/dish', new Dish(name , price, description, prep_time, image, restaurant));
   }
 
   deleteDish(id_dish : Number, id_restaurant: Number){
@@ -59,14 +59,13 @@ export class RestaurantService extends APIService {
   }
 
   modifyDish(image: string, name: string, price: Number, description: string, prep_time: Number, dish: Dish) {
-    this.dish = new Dish(name , price, description, prep_time, dish.restaurant);
-    this.dish.image = image;
+    this.dish = new Dish(name , price, description, prep_time, image, dish.restaurant);
     this.dish.id_dish = dish.id_dish;
     return this.put(this.resourceUrl + dish.restaurant.id_restaurant + '/dish', this.dish);
   }
 
   register(name: string, latitude: Number, longitude: Number, user_id: User){
-    this.restaurant =new Restaurant(name, latitude, longitude);
+    this.restaurant =new Restaurant(name, latitude, longitude, "");
     this.restaurant.user_id = user_id;
     return this.post(this.resourceUrl + 'register', this.restaurant);
   }
