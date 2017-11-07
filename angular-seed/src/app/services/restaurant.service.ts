@@ -64,8 +64,8 @@ export class RestaurantService extends APIService {
     return this.put(this.resourceUrl + dish.restaurant.id_restaurant + '/dish', this.dish);
   }
 
-  register(name: string, latitude: Number, longitude: Number, user_id: User){
-    this.restaurant =new Restaurant(name, latitude, longitude, "");
+  register(name: string, latitude: Number, longitude: Number,  image: string, user_id: User){
+    this.restaurant =new Restaurant(name, latitude, longitude, image);
     this.restaurant.user_id = user_id;
     return this.post(this.resourceUrl + 'register', this.restaurant);
   }

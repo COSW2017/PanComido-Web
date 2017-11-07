@@ -27,6 +27,7 @@ export class RegisterRestaurantPageComponent implements OnInit {
       Rname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
       latitude: new FormControl ('', Validators.compose([Validators.required, Validators.min(-90), Validators.max(90)])),
       longitude: new FormControl ('', Validators.compose([Validators.required, Validators.min(-180), Validators.max(180)])),
+      image: new FormControl ('')
     });
   }
 
@@ -38,6 +39,7 @@ export class RegisterRestaurantPageComponent implements OnInit {
         this.registerRestaurantForm.get('Rname').value,
         this.registerRestaurantForm.get('latitude').value,
         this.registerRestaurantForm.get('longitude').value,
+        this.registerRestaurantForm.get('image').value,
         this.userService.actualUser).subscribe(data =>{
           this.load = false;
           //this.restaurant = data;
