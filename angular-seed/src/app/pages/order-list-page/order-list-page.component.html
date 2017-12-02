@@ -19,7 +19,7 @@
       </tr>
     </thead>
     <tr *ngFor="let command of commands">
-        <td  *ngIf="command.state<2">{{ command.creation_date | date }}</td>
+        <td  *ngIf="command.state<2">{{ command.creation_date | date}}</td>
         <td  *ngIf="command.state<2">{{command.id_command}}</td>
         <td  *ngIf="command.state<2">
           <Button class="btn btn-primary" (click)="viewOrder(command.id_command)">Detail</Button>
