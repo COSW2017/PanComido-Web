@@ -131,7 +131,7 @@ const ROUTES = [
     {
       provide: INITIAL_CONFIG,
       useValue: {
-        apiURL: 'http://pancomido-cosw.herokuapp.com'
+        apiURL: 'http://localhost:8080'
       }
     },
     TodoService,
