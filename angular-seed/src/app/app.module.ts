@@ -39,7 +39,9 @@ import { DishListComponent } from './pages/dish-list/dish-list.component';
 import { RegisterRestaurantPageComponent } from './pages/register-restaurant-page/register-restaurant-page.component';
 import { DishDetailPageComponent } from './pages/dish-detail-page/dish-detail-page.component';
 import { RestaurantEditPageComponent } from './pages/restaurant-edit-page/restaurant-edit-page.component';
-import { CommandDeliveryPageComponent } from './pages/command-delivery-page/command-delivery.component'; 
+import { CommandDeliveryPageComponent } from './pages/command-delivery-page/command-delivery.component';
+import { CommandDishPageComponent } from './pages/command-dish-page/command-dish-page.component';
+import { CommandDishService } from './services/commandDish.service';
 
 
 const ROUTES = [
@@ -80,6 +82,10 @@ const ROUTES = [
     canActivate: [AuthService],
   },
   {
+    path: 'commandDish', component: CommandDishPageComponent,
+    canActivate: [AuthService],
+  },
+  {
     path: 'registerR', component: RegisterRestaurantPageComponent,
     
   },
@@ -113,6 +119,7 @@ const ROUTES = [
     OrderListPageComponent,
     OrderDetailPageComponent,
     CommandDeliveryPageComponent,
+    CommandDishPageComponent,
     RegisterPageComponent,
     DishListComponent,
     RegisterRestaurantPageComponent,
@@ -142,6 +149,7 @@ const ROUTES = [
     UsersService,
     RestaurantService,
     OrderService,
+    CommandDishService,
     { provide: APP_BASE_HREF, useValue: '/' }
   ],
   bootstrap: [AppComponent]
